@@ -87,14 +87,14 @@
         android:layout_marginLeft="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/colorPrimaryDark"
         android:scrollbarFadeDuration="1500"
         android:scrollbarSize="3dp"
         android:scrollbarStyle="outsideInset"
         android:scrollbarThumbVertical="@color/colorPrimary"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/save_changes_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,5 +115,17 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_input" />
+
+    <Button
+        android:id="@+id/save_changes_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="save changes"
+        android:background="#20a51d"
+        android:padding="15dp"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

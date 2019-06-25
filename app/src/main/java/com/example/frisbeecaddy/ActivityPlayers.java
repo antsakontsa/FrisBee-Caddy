@@ -4,11 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class ActivityPlayers extends AppCompatActivity {
@@ -27,11 +32,44 @@ public class ActivityPlayers extends AppCompatActivity {
         setContentView(R.layout.activity_players);
 
         createNameList();
+        loadData();
         buildRecyclerView();
         setButtons();
+
+        Button save = findViewById(R.id.save_changes_btn);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveData();
+            }
+        });
+    }
+
+    private void saveData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(mNameList);
+        editor.putString("task list", json);
+        editor.apply();
+    }
+
+    private void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("task list", null);
+        Type type = new TypeToken<ArrayList<NameItem>>() {}.getType();
+        mNameList = gson.fromJson(json, type);
+
+        if (mNameList == null) {
+            mNameList = new ArrayList<>();
+        }
     }
 
     public void addItem(int position) {
+        /**textAdd = findViewById(R.id.name_input);
+        mNameList.add(position, new NameItem(textAdd.getText().toString()));**/
+
         mNameList.add(position, new NameItem("Antti"));
         mAdapter.notifyItemInserted(position);
     }
@@ -71,7 +109,7 @@ public class ActivityPlayers extends AppCompatActivity {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position = Integer.parseInt(textAdd.getText().toString().trim());
+                int position = Integer.parseInt(textAdd.getText().toString());
                 addItem(position);
             }
         });
