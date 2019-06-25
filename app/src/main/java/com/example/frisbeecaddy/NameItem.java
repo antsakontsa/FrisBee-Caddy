@@ -7,10 +7,6 @@ public class NameItem {
         mText1 = text1;
     }
 
-    public void changeText1(String text) {
-        mText1 = text;
-    }
-
     public String getText1() {
         return mText1;
     }

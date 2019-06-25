@@ -87,19 +87,18 @@
         android:layout_marginLeft="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="30dp"
         android:background="@color/colorPrimaryDark"
         android:scrollbarFadeDuration="1500"
         android:scrollbarSize="3dp"
         android:scrollbarStyle="outsideInset"
         android:scrollbarThumbVertical="@color/colorPrimary"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button_remove"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player_list_txt"
-        app:layout_constraintVertical_bias="1.0"></androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@+id/player_list_txt"></androidx.recyclerview.widget.RecyclerView>
 
     <EditText
         android:id="@+id/edittext_insert"
@@ -110,31 +109,11 @@
         android:layout_marginRight="30dp"
         android:ems="10"
         android:inputType="number"
-        android:text="1"
+        android:text="0"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_input" />
-
-    <EditText
-        android:id="@+id/edittext_remove"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:text="1"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_remove" />
-
-    <Button
-        android:id="@+id/button_remove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="remove"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

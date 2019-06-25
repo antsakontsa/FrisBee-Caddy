@@ -18,7 +18,6 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
         void onDeleteClick(int position);
     }
 
@@ -34,19 +33,6 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
             super(itemView);
             mTextView1 = itemView.findViewById(R.id.nameView);
             mDeleteImage = itemView.findViewById(R.id.image_delete);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(position);
-                        }
-                    }
-                }
-            });
 
             mDeleteImage.setOnClickListener(new View.OnClickListener() {
                 @Override
