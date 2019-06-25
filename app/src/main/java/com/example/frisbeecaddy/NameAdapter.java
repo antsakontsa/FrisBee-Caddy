@@ -34,6 +34,7 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
             mTextView1 = itemView.findViewById(R.id.nameView);
             mDeleteImage = itemView.findViewById(R.id.image_delete);
 
+            /** When deleting image been clicked, delete that particular item in list **/
             mDeleteImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
