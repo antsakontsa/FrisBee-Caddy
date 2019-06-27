@@ -8,12 +8,22 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    private Button players;
+    private Button players, courses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /** When "courses" button been clicked, go to ActivityPlayers **/
+        courses = findViewById(R.id.courses_btn);
+        courses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ActivityCourses.class);
+                startActivity(intent);
+            }
+        });
 
         /** When "players" button been clicked, go to ActivityPlayers **/
         players = findViewById(R.id.players_btn);
