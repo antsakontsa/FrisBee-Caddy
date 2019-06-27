@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,6 +21,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ActivityPlayers extends AppCompatActivity {
     private ArrayList<NameItem> mNameList;
@@ -34,28 +39,23 @@ public class ActivityPlayers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_players);
 
-        createNameList();
         loadData();
         buildRecyclerView();
         setButtons();
+    }
 
-        /** When "save changes" button been clicked, save changes according to namelist **/
-        Button save = findViewById(R.id.save_changes_btn);
-        save.setOnClickListener(new View.OnClickListener() {
+    /**
+     * ALL OUTER METHODS GOES UNDER THIS
+     ********************************************************************************************/
+    private void sortArrayList() {
+        Collections.sort(mNameList, new Comparator<NameItem>() {
             @Override
-            public void onClick(View view) {
-                saveData();
-
-                /** Take user back to main menu **/
-                Intent intent = new Intent(ActivityPlayers.this, MainActivity.class);
-                startActivity(intent);
-
-                /** Notify user that changes been saved successfully **/
-                Toast toast = Toast.makeText(getApplicationContext(), "SAVED SUCCESSFULLY!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 150);
-                toast.show();
+            public int compare(NameItem nameItem, NameItem t1) {
+                return nameItem.getText1().compareTo(t1.getText1());
             }
         });
+
+        mAdapter.notifyDataSetChanged();
     }
 
     private void saveData() {
@@ -81,20 +81,27 @@ public class ActivityPlayers extends AppCompatActivity {
     }
 
     public void addItem(int position) {
-        /**textAdd = findViewById(R.id.name_input);
-         mNameList.add(position, new NameItem(textAdd.getText().toString()));**/
+        textAdd = findViewById(R.id.name_input);
+        String getInput = textAdd.getText().toString().trim();
 
-        mNameList.add(position, new NameItem("Antti"));
-        mAdapter.notifyItemInserted(position);
+        /** THIS PART ISN'T WORKING FOR SOME UNKNOWN REASON... I JUST LEAVE IT THERE IF I OR SOME1 ELSE FIND OUT HOW IT WORKS **/
+        if (mNameList.contains(getInput)) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Name: \"" + getInput + "\" is already on a list...", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, -165, 590);
+            toast.show();
+            textAdd.getText().clear();
+        } else {
+            mNameList.add(position, new NameItem(textAdd.getText().toString().trim()));
+            sortArrayList();
+            saveData();
+            mAdapter.notifyItemInserted(position);
+            textAdd.getText().clear();
+        }
     }
 
     public void removeItem(int position) {
         mNameList.remove(position);
         mAdapter.notifyItemRemoved(position);
-    }
-
-    public void createNameList() {
-        mNameList = new ArrayList<>();
     }
 
     public void buildRecyclerView() {
@@ -110,31 +117,51 @@ public class ActivityPlayers extends AppCompatActivity {
             @Override
             public void onDeleteClick(int position) {
                 removeItem(position);
-
-                /** Notify user to click save changes button **/
-                Toast toast = Toast.makeText(getApplicationContext(), "CLICK SAVE CHANGES", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 250, 780);
-                toast.show();
+                sortArrayList();
+                saveData();
             }
         });
     }
 
     public void setButtons() {
-        /** THIS IS ELEMENT IS HIDDEN IN LAYOUT **/
-        textAdd = findViewById(R.id.edittext_insert);
+        /** "add" button has to be disabled when page loads **/
+        buttonAdd = findViewById(R.id.add_btn);
+        buttonAdd.setEnabled(false);
 
         /** When "add" button been clicked, add name to the namelist **/
-        buttonAdd = findViewById(R.id.add_btn);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position = Integer.parseInt(textAdd.getText().toString());
-                addItem(position);
+                /** Close soft keyboard first **/
+                InputMethodManager input = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                input.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
 
-                /** Notify user to click save changes button **/
-                Toast toast = Toast.makeText(getApplicationContext(), "CLICK SAVE CHANGES", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 250, 780);
-                toast.show();
+                /** Then add item on its position **/
+                int position = Integer.parseInt("0");
+                addItem(position);
+            }
+        });
+
+        /** This enable "add" button when user insert some input **/
+        textAdd = findViewById(R.id.name_input);
+        textAdd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                /** Have to be here even tho it's not containing anything **/
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String name_input = textAdd.getText().toString().trim();
+
+                buttonAdd.setEnabled(!name_input.isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                /** Have to be here even tho it's not containing anything **/
             }
         });
     }

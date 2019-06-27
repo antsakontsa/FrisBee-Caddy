@@ -29,7 +29,7 @@
         android:layout_marginTop="30dp"
         android:text="New player:"
         android:textColor="@color/colorAccent"
-        android:textSize="25sp"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/players_txt" />
 
@@ -75,7 +75,7 @@
         android:layout_marginTop="30dp"
         android:text="Player list:"
         android:textColor="@color/colorAccent"
-        android:textSize="25sp"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_input" />
 
@@ -83,49 +83,20 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="30dp"
         android:background="@color/colorPrimaryDark"
         android:scrollbarFadeDuration="1500"
         android:scrollbarSize="3dp"
         android:scrollbarStyle="outsideInset"
         android:scrollbarThumbVertical="@color/colorPrimary"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/save_changes_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player_list_txt"></androidx.recyclerview.widget.RecyclerView>
-
-    <EditText
-        android:id="@+id/edittext_insert"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:inputType="number"
-        android:text="0"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_input" />
-
-    <Button
-        android:id="@+id/save_changes_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="save changes"
-        android:background="#20a51d"
-        android:padding="15dp"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
