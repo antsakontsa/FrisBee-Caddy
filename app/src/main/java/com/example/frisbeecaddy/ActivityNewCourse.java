@@ -11,30 +11,48 @@ import android.widget.TextView;
 
 public class ActivityNewCourse extends AppCompatActivity {
     private Button save, plus, minus;
-    private EditText numberOfHoles;
+    private TextView number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_course);
 
-        numberOfHoles = findViewById(R.id.number_of_holes_number);
+        setButtons();
+    }
 
-        /** When "minus" button been clicked, minus 1 from number of holes box **/
-        minus = findViewById(R.id.minus_btn);
-        minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    /**
+     * ALL OUTER METHODS GOES UNDER THIS
+     ********************************************************************************************/
+    public void setButtons() {
 
-            }
-        });
+        number = findViewById(R.id.number_of_holes_number);
 
-        /** When "plus" button been clicked, add 1 to number of holes box **/
         plus = findViewById(R.id.plus_btn);
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int t = Integer.parseInt(number.getText().toString());
 
+                if (t == 99) {
+                    number.setText(String.valueOf(99));
+                } else {
+                    number.setText(String.valueOf(t+1));
+                }
+            }
+        });
+
+        minus = findViewById(R.id.minus_btn);
+        minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int t = Integer.parseInt(number.getText().toString());
+
+                if (t == 1) {
+                    number.setText(String.valueOf(1));
+                } else {
+                    number.setText(String.valueOf(t-1));
+                }
             }
         });
 
