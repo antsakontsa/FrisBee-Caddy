@@ -105,7 +105,7 @@ public class ActivityPlayers extends AppCompatActivity {
     }
 
     public void buildRecyclerView() {
-        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.recyclerViewPlayers);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new NameAdapter(mNameList);
