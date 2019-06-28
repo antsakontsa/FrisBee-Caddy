@@ -28,11 +28,13 @@ public class ActivityNewCourse extends AppCompatActivity {
         ArrayList<NewCourseItem> newCourseList = new ArrayList<>();
         newCourseList.add(new NewCourseItem("1", "3", R.drawable.ic_minus, R.drawable.ic_plus));
         newCourseList.add(new NewCourseItem("2", "3", R.drawable.ic_minus, R.drawable.ic_plus));
-        newCourseList.add(new NewCourseItem("3", "3", R.drawable.ic_minus, R.drawable.ic_plus));        newCourseList.add(new NewCourseItem("1", "3", R.drawable.ic_minus, R.drawable.ic_plus));
-        newCourseList.add(new NewCourseItem("2", "3", R.drawable.ic_minus, R.drawable.ic_plus));
-        newCourseList.add(new NewCourseItem("3", "3", R.drawable.ic_minus, R.drawable.ic_plus));        newCourseList.add(new NewCourseItem("1", "3", R.drawable.ic_minus, R.drawable.ic_plus));
-        newCourseList.add(new NewCourseItem("2", "3", R.drawable.ic_minus, R.drawable.ic_plus));
         newCourseList.add(new NewCourseItem("3", "3", R.drawable.ic_minus, R.drawable.ic_plus));
+        newCourseList.add(new NewCourseItem("4", "3", R.drawable.ic_minus, R.drawable.ic_plus));
+        newCourseList.add(new NewCourseItem("5", "3", R.drawable.ic_minus, R.drawable.ic_plus));
+        newCourseList.add(new NewCourseItem("6", "3", R.drawable.ic_minus, R.drawable.ic_plus));
+        newCourseList.add(new NewCourseItem("7", "3", R.drawable.ic_minus, R.drawable.ic_plus));
+        newCourseList.add(new NewCourseItem("8", "3", R.drawable.ic_minus, R.drawable.ic_plus));
+        newCourseList.add(new NewCourseItem("9", "3", R.drawable.ic_minus, R.drawable.ic_plus));
 
         mRecyclerView = findViewById(R.id.recyclerViewNewCourse);
         mRecyclerView.setHasFixedSize(true);
