@@ -80,7 +80,7 @@ public class ActivityPlayers extends AppCompatActivity {
         }
     }
 
-    public void addItem(int position) {
+    private void addItem(int position) {
         textAdd = findViewById(R.id.name_input);
         String getInput = textAdd.getText().toString().trim();
 
@@ -99,12 +99,12 @@ public class ActivityPlayers extends AppCompatActivity {
         }
     }
 
-    public void removeItem(int position) {
+    private void removeItem(int position) {
         mNameList.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
 
-    public void buildRecyclerView() {
+    private void buildRecyclerView() {
         mRecyclerView = findViewById(R.id.recyclerViewPlayers);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
@@ -123,7 +123,7 @@ public class ActivityPlayers extends AppCompatActivity {
         });
     }
 
-    public void setButtons() {
+    private void setButtons() {
         /** "add" button has to be disabled when page loads **/
         buttonAdd = findViewById(R.id.add_btn);
         buttonAdd.setEnabled(false);
@@ -139,7 +139,7 @@ public class ActivityPlayers extends AppCompatActivity {
                         InputMethodManager.HIDE_NOT_ALWAYS);
 
                 /** Then add item on its position **/
-                int position = Integer.parseInt("0");
+                int position = 0;
                 addItem(position);
             }
         });

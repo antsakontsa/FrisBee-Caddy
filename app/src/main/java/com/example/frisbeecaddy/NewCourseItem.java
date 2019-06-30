@@ -1,7 +1,5 @@
 package com.example.frisbeecaddy;
 
-import android.widget.TextView;
-
 public class NewCourseItem {
     private String mText1, mText2;
     private int mImageMinus, mImagePlus;
@@ -13,11 +11,11 @@ public class NewCourseItem {
         mImagePlus = imagePlus;
     }
 
-    public String getText1 () {
+    public String getText1() {
         return mText1;
     }
 
-    public String getText2 () {
+    public String getText2() {
         return mText2;
     }
 
