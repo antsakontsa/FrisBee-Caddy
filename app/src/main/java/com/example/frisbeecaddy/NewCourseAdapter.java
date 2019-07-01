@@ -13,17 +13,53 @@ import java.util.ArrayList;
 
 public class NewCourseAdapter extends RecyclerView.Adapter<NewCourseAdapter.NewCourseViewHolder> {
     private ArrayList<NewCourseItem> mNewCourseList;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onMinusClick(int position);
+        void onPlusClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     public static class NewCourseViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView1, mTextView2;
         public ImageView mImageView1, mImageView2;
 
-        public NewCourseViewHolder(@NonNull View itemView) {
+        public NewCourseViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             mTextView1 = itemView.findViewById(R.id.hole_number);
             mTextView2 = itemView.findViewById(R.id.par_number);
             mImageView1 = itemView.findViewById(R.id.item_minus_btn);
             mImageView2 = itemView.findViewById(R.id.item_plus_btn);
+
+            mImageView1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onMinusClick(position);
+                        }
+                    }
+                }
+            });
+
+            mImageView2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onPlusClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -35,7 +71,7 @@ public class NewCourseAdapter extends RecyclerView.Adapter<NewCourseAdapter.NewC
     @Override
     public NewCourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_course_item, parent, false);
-        NewCourseViewHolder evh = new NewCourseViewHolder(v);
+        NewCourseViewHolder evh = new NewCourseViewHolder(v, mListener);
         return evh;
     }
 
