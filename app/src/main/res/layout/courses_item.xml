@@ -3,31 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:outlineSpotShadowColor="@color/colorAccent"
     app:cardCornerRadius="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimaryDark"
+        android:outlineSpotShadowColor="@color/colorAccent">
 
         <TextView
             android:id="@+id/course_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mukkula Etu9"
-            android:paddingTop="5dp"
-            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
             android:textSize="25sp"
-            android:textColor="@color/colorPrimary"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/holes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/course_name"
             android:text="Holes:"
             android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            android:layout_below="@+id/course_name"/>
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/holes_number"
@@ -40,19 +42,19 @@
             android:layout_toEndOf="@+id/holes"
             android:layout_toRightOf="@+id/holes"
             android:text="9"
-            android:textSize="20sp"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/img_delete"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
-            android:background="@drawable/ic_delete"/>
+            android:background="@drawable/ic_delete" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
