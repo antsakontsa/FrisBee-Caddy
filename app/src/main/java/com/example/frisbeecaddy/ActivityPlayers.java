@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -27,7 +28,7 @@ import java.util.Comparator;
 public class ActivityPlayers extends AppCompatActivity {
     private ArrayList<NameItem> mNameList;
 
-    private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerViewPlayers;
     private NameAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -81,22 +82,11 @@ public class ActivityPlayers extends AppCompatActivity {
     }
 
     private void addItem(int position) {
-        textAdd = findViewById(R.id.name_input);
-        String getInput = textAdd.getText().toString().trim();
-
-        /** THIS PART ISN'T WORKING FOR SOME UNKNOWN REASON... I JUST LEAVE IT THERE IF I OR SOME1 ELSE FIND OUT HOW IT WORKS **/
-        if (mNameList.contains(getInput)) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Name: \"" + getInput + "\" is already on a list...", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, -165, 590);
-            toast.show();
-            textAdd.getText().clear();
-        } else {
-            mNameList.add(position, new NameItem(textAdd.getText().toString().trim()));
-            sortArrayList();
-            saveData();
-            mAdapter.notifyItemInserted(position);
-            textAdd.getText().clear();
-        }
+        mNameList.add(position, new NameItem(textAdd.getText().toString().trim()));
+        sortArrayList();
+        saveData();
+        mAdapter.notifyItemInserted(position);
+        textAdd.getText().clear();
     }
 
     private void removeItem(int position) {
@@ -105,13 +95,13 @@ public class ActivityPlayers extends AppCompatActivity {
     }
 
     private void buildRecyclerView() {
-        mRecyclerView = findViewById(R.id.recyclerViewPlayers);
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerViewPlayers = findViewById(R.id.recyclerViewPlayers);
+        mRecyclerViewPlayers.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new NameAdapter(mNameList);
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerViewPlayers.setLayoutManager(mLayoutManager);
+        mRecyclerViewPlayers.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new NameAdapter.OnItemClickListener() {
             @Override
@@ -128,24 +118,33 @@ public class ActivityPlayers extends AppCompatActivity {
         buttonAdd = findViewById(R.id.add_btn);
         buttonAdd.setEnabled(false);
 
-        /** When "add" button been clicked, add name to the namelist **/
+        /** When "add" button been clicked, add a name to the namelist **/
+        textAdd = findViewById(R.id.name_input);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /** Close soft keyboard first **/
-                InputMethodManager input = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-                input.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
+                boolean contain = mNameList.contains(textAdd.getText().toString().trim());
 
-                /** Then add item on its position **/
-                int position = 0;
-                addItem(position);
+                if (contain) {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "Name: \"" + textAdd + "\" is already on a list...", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, -170, 592);
+                    toast.show();
+                } else {
+                    /** Close soft keyboard first **/
+                    InputMethodManager input = (InputMethodManager)
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
+                    input.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    /** Then add item **/
+                    int position = 0;
+                    addItem(position);
+                }
             }
         });
 
         /** This enable "add" button when user insert some input **/
-        textAdd = findViewById(R.id.name_input);
         textAdd.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

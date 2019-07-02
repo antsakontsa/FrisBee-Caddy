@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:id="@+id/course_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mukkula Etu9"
+            android:paddingTop="5dp"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/holes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holes:"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            android:layout_below="@+id/course_name"/>
+
+        <TextView
+            android:id="@+id/holes_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/course_name"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/holes"
+            android:layout_toRightOf="@+id/holes"
+            android:text="9"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:background="@drawable/ic_delete"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

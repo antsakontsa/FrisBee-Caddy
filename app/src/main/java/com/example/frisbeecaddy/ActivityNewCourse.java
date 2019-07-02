@@ -20,7 +20,7 @@ import java.util.Comparator;
 public class ActivityNewCourse extends AppCompatActivity {
     private ArrayList<NewCourseItem> mNewCourseList;
 
-    private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerViewNewCourse;
     private NewCourseAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -57,13 +57,13 @@ public class ActivityNewCourse extends AppCompatActivity {
     }
 
     private void buildRecyclerView() {
-        mRecyclerView = findViewById(R.id.recyclerViewNewCourse);
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerViewNewCourse = findViewById(R.id.recyclerViewNewCourse);
+        mRecyclerViewNewCourse.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new NewCourseAdapter(mNewCourseList);
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerViewNewCourse.setLayoutManager(mLayoutManager);
+        mRecyclerViewNewCourse.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new NewCourseAdapter.OnItemClickListener() {
             @Override
@@ -210,6 +210,7 @@ public class ActivityNewCourse extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(ActivityNewCourse.this, ActivityCourses.class);
                 startActivity(intent);
             }
