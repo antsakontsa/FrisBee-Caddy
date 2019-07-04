@@ -5,15 +5,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ActivityCourses extends AppCompatActivity {
+    private ArrayList<CoursesItem> mCourselist;
+
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private CoursesAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     private Button add_course;
@@ -23,20 +32,75 @@ public class ActivityCourses extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
 
-        ArrayList<CoursesItem> coursesList = new ArrayList<>();
-        coursesList.add(new CoursesItem("Mukkula Etu9", "Holes:", "9", R.drawable.ic_delete));
-        coursesList.add(new CoursesItem("Mukkula Taka9", "Holes:", "9", R.drawable.ic_delete));
-        coursesList.add(new CoursesItem("Mukkula Koko18", "Holes:", "18", R.drawable.ic_delete));
+        loadData();
+        buildRecyclerView();
+        addItem();
+        sortArrayList();
+        setButtons();
+        saveData();
+    }
 
+    public void addItem() {
+        if (getIntent().getStringExtra("COURSENAME") != null) {
+            mCourselist.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"), R.drawable.ic_delete));
+        }
+    }
+
+    private void saveData() {
+        SharedPreferences sharedPreferences2 = getSharedPreferences("shared preferences2", MODE_PRIVATE);
+        SharedPreferences.Editor editor2 = sharedPreferences2.edit();
+        Gson gson2 = new Gson();
+        String json2 = gson2.toJson(mCourselist);
+        editor2.putString("task list2", json2);
+        editor2.apply();
+    }
+
+    private void loadData() {
+        SharedPreferences sharedPreferences2 = getSharedPreferences("shared preferences2", MODE_PRIVATE);
+        Gson gson2 = new Gson();
+        String json2 = sharedPreferences2.getString("task list2", null);
+        Type type2 = new TypeToken<ArrayList<CoursesItem>>() {
+        }.getType();
+        mCourselist = gson2.fromJson(json2, type2);
+
+        if (mCourselist == null) {
+            mCourselist = new ArrayList<>();
+        }
+    }
+
+    private void buildRecyclerView() {
         mRecyclerView = findViewById(R.id.recyclerViewCourses);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new CoursesAdapter(coursesList);
+        mAdapter = new CoursesAdapter(mCourselist);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        setButtons();
+
+        mAdapter.setOnItemClickListener(new CoursesAdapter.OnItemClickListener() {
+            @Override
+            public void onDeleteClick(int position) {
+                removeItem(position);
+            }
+        });
+    }
+
+    private void sortArrayList() {
+        Collections.sort(mCourselist, new Comparator<CoursesItem>() {
+            @Override
+            public int compare(CoursesItem t1, CoursesItem t2) {
+                return t1.getCourseName().compareTo(t2.getCourseName());
+            }
+        });
+
+        mAdapter.notifyDataSetChanged();
+    }
+
+    private void removeItem(int position) {
+        mCourselist.remove(position);
+        saveData();
+        mAdapter.notifyDataSetChanged();
     }
 
     private void setButtons() {

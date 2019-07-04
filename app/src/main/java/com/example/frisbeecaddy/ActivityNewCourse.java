@@ -26,7 +26,7 @@ public class ActivityNewCourse extends AppCompatActivity {
 
     private Button save, plus, minus;
     private EditText courseName;
-    private TextView number, par;
+    private TextView number;
 
     private int counter;
 
@@ -206,16 +206,6 @@ public class ActivityNewCourse extends AppCompatActivity {
             }
         });
 
-        /** When "save courses" button been clicked, save and go to ActivityCourses **/
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(ActivityNewCourse.this, ActivityCourses.class);
-                startActivity(intent);
-            }
-        });
-
         /** This enable "save course" button when user insert some input **/
         courseName = findViewById(R.id.course_name_input);
         courseName.addTextChangedListener(new TextWatcher() {
@@ -234,6 +224,22 @@ public class ActivityNewCourse extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 /** Have to be here even tho it's not containing anything **/
+            }
+        });
+
+        /** When "save course" button been clicked, go to ActivityCourses and there, save new course data into the item **/
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                courseName = findViewById(R.id.course_name_input);
+                number = findViewById(R.id.number_of_holes_number);
+                String intentCourseName = courseName.getText().toString().trim();
+                String holeNumber = number.getText().toString().trim();
+
+                Intent intent = new Intent(ActivityNewCourse.this, ActivityCourses.class);
+                intent.putExtra("COURSENAME", intentCourseName);
+                intent.putExtra("HOLENUMBER", holeNumber);
+                startActivity(intent);
             }
         });
     }

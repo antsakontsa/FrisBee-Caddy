@@ -17,6 +17,7 @@ public class NewCourseAdapter extends RecyclerView.Adapter<NewCourseAdapter.NewC
 
     public interface OnItemClickListener {
         void onMinusClick(int position);
+
         void onPlusClick(int position);
     }
 
