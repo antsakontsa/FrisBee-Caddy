@@ -237,8 +237,13 @@ public class ActivityNewCourse extends AppCompatActivity {
                 String holeNumber = number.getText().toString().trim();
 
                 Intent intent = new Intent(ActivityNewCourse.this, ActivityCourses.class);
+
+                /** Intent primitive data **/
                 intent.putExtra("COURSENAME", intentCourseName);
                 intent.putExtra("HOLENUMBER", holeNumber);
+
+                /** Intent Arraylist **/
+                intent.putExtra("COURSELIST", mNewCourseList);
                 startActivity(intent);
             }
         });

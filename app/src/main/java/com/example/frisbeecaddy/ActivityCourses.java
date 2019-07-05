@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class ActivityCourses extends AppCompatActivity {
-    private ArrayList<CoursesItem> mCourselist;
+    private ArrayList<CoursesItem> mCourseList;
 
     private RecyclerView mRecyclerView;
     private CoursesAdapter mAdapter;
@@ -41,8 +41,15 @@ public class ActivityCourses extends AppCompatActivity {
     }
 
     public void addItem() {
+        /** Receive primitive data from ActivityNewCourse and make new item with that information **/
         if (getIntent().getStringExtra("COURSENAME") != null) {
-            mCourselist.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"), R.drawable.ic_delete));
+            mCourseList.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"), R.drawable.ic_delete));
+
+            /** Store new course items in arraylist for later use **/
+            ArrayList<NewCourseItem> itemArray = (ArrayList<NewCourseItem>) getIntent().getSerializableExtra("COURSELIST");
+
+            /** Take arraylists first item and its par number
+             String txt = itemArray.get(0).getText2(); **/
         }
     }
 
@@ -50,7 +57,7 @@ public class ActivityCourses extends AppCompatActivity {
         SharedPreferences sharedPreferences2 = getSharedPreferences("shared preferences2", MODE_PRIVATE);
         SharedPreferences.Editor editor2 = sharedPreferences2.edit();
         Gson gson2 = new Gson();
-        String json2 = gson2.toJson(mCourselist);
+        String json2 = gson2.toJson(mCourseList);
         editor2.putString("task list2", json2);
         editor2.apply();
     }
@@ -61,10 +68,10 @@ public class ActivityCourses extends AppCompatActivity {
         String json2 = sharedPreferences2.getString("task list2", null);
         Type type2 = new TypeToken<ArrayList<CoursesItem>>() {
         }.getType();
-        mCourselist = gson2.fromJson(json2, type2);
+        mCourseList = gson2.fromJson(json2, type2);
 
-        if (mCourselist == null) {
-            mCourselist = new ArrayList<>();
+        if (mCourseList == null) {
+            mCourseList = new ArrayList<>();
         }
     }
 
@@ -72,11 +79,10 @@ public class ActivityCourses extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerViewCourses);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new CoursesAdapter(mCourselist);
+        mAdapter = new CoursesAdapter(mCourseList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-
 
         mAdapter.setOnItemClickListener(new CoursesAdapter.OnItemClickListener() {
             @Override
@@ -87,7 +93,7 @@ public class ActivityCourses extends AppCompatActivity {
     }
 
     private void sortArrayList() {
-        Collections.sort(mCourselist, new Comparator<CoursesItem>() {
+        Collections.sort(mCourseList, new Comparator<CoursesItem>() {
             @Override
             public int compare(CoursesItem t1, CoursesItem t2) {
                 return t1.getCourseName().compareTo(t2.getCourseName());
@@ -98,7 +104,7 @@ public class ActivityCourses extends AppCompatActivity {
     }
 
     private void removeItem(int position) {
-        mCourselist.remove(position);
+        mCourseList.remove(position);
         saveData();
         mAdapter.notifyDataSetChanged();
     }
