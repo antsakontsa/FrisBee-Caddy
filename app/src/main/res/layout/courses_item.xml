@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/course_name"
+            android:paddingBottom="10dp"
             android:text="Holes:"
             android:textColor="@color/colorAccent"
             android:textSize="22sp" />
@@ -40,7 +41,6 @@
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/holes_txt"
             android:layout_toRightOf="@+id/holes_txt"
-            android:paddingBottom="8dp"
             android:text="9"
             android:textColor="@color/colorAccent"
             android:textSize="22sp" />
