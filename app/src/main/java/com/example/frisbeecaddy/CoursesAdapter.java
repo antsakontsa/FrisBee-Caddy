@@ -24,14 +24,16 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
     }
 
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
-        public TextView mCourseName, mHolesTxt, mHolesNm;
+        public TextView mCourseName, mHolesTxt, mHolesNm, mParTxt, mParNm;
         public ImageView mDelete;
 
         public CourseViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             mCourseName = itemView.findViewById(R.id.course_name);
-            mHolesTxt = itemView.findViewById(R.id.holes);
+            mHolesTxt = itemView.findViewById(R.id.holes_txt);
             mHolesNm = itemView.findViewById(R.id.holes_number);
+            mParTxt = itemView.findViewById(R.id.par_txt);
+            mParNm = itemView.findViewById(R.id.par_nm);
             mDelete = itemView.findViewById(R.id.img_delete);
 
             mDelete.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +71,8 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
         holder.mCourseName.setText(currentItem.getCourseName());
         holder.mHolesTxt.setText(currentItem.getHolesTxt());
         holder.mHolesNm.setText(currentItem.getHolesNm());
+        holder.mParTxt.setText(currentItem.getParTxt());
+        holder.mParNm.setText(currentItem.getParNm());
         holder.mDelete.setImageResource(currentItem.getDelete());
     }
 

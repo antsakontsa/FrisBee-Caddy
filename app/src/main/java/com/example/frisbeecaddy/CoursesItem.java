@@ -1,13 +1,15 @@
 package com.example.frisbeecaddy;
 
 public class CoursesItem {
-    private String mCourseName, mHolesTxt, mHolesNm;
+    private String mCourseName, mHolesTxt, mHolesNm, mParTxt, mParNm;
     private int mDelete;
 
-    public CoursesItem(String courseName, String holesTxt, String holesNm, int delete) {
+    public CoursesItem(String courseName, String holesTxt, String holesNm, String parTxt, String parNm, int delete) {
         mCourseName = courseName;
         mHolesTxt = holesTxt;
         mHolesNm = holesNm;
+        mParTxt = parTxt;
+        mParNm = parNm;
         mDelete = delete;
     }
 
@@ -21,6 +23,14 @@ public class CoursesItem {
 
     public String getHolesNm() {
         return mHolesNm;
+    }
+
+    public String getParTxt() {
+        return mParTxt;
+    }
+
+    public String getParNm() {
+        return mParNm;
     }
 
     public int getDelete() {

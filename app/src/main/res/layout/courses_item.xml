@@ -22,13 +22,13 @@
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/holes"
+            android:id="@+id/holes_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/course_name"
             android:text="Holes:"
             android:textColor="@color/colorAccent"
-            android:textSize="25sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/holes_number"
@@ -38,12 +38,40 @@
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="0dp"
-            android:layout_toEndOf="@+id/holes"
-            android:layout_toRightOf="@+id/holes"
+            android:layout_toEndOf="@+id/holes_txt"
+            android:layout_toRightOf="@+id/holes_txt"
             android:paddingBottom="8dp"
             android:text="9"
             android:textColor="@color/colorAccent"
-            android:textSize="25sp" />
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@id/par_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/holes_number"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/holes_number"
+            android:layout_toRightOf="@+id/holes_number"
+            android:text="Par:"
+            android:textColor="@color/colorAccent"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/par_nm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/course_name"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/par_txt"
+            android:layout_toRightOf="@+id/par_txt"
+            android:text="54"
+            android:textColor="@color/colorAccent"
+            android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/img_delete"

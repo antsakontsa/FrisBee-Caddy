@@ -41,15 +41,20 @@ public class ActivityCourses extends AppCompatActivity {
     }
 
     public void addItem() {
-        /** Receive primitive data from ActivityNewCourse and make new item with that information **/
+        /** This data comes from ActivityNewCourse **/
         if (getIntent().getStringExtra("COURSENAME") != null) {
-            mCourseList.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"), R.drawable.ic_delete));
 
-            /** Store new course items in arraylist for later use **/
+            /** Store new course items in arraylist **/
             ArrayList<NewCourseItem> itemArray = (ArrayList<NewCourseItem>) getIntent().getSerializableExtra("COURSELIST");
 
-            /** Take arraylists first item and its par number
-             String txt = itemArray.get(0).getText2(); **/
+            /** Count par number for item **/
+            int parCount = 0;
+            for (int i = 0; i < itemArray.size(); i++) {
+                parCount += Integer.parseInt(itemArray.get(i).getText2());
+            }
+
+        /** Receive primitive data from and make new item with that information **/
+            mCourseList.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"),"Par:", Integer.toString(parCount), R.drawable.ic_delete));
         }
     }
 
