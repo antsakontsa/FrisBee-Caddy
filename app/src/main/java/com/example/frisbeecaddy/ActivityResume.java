@@ -13,7 +13,9 @@ public class ActivityResume extends AppCompatActivity {
         setContentView(R.layout.activity_resume);
     }
 
-    /** Back button **/
+    /**
+     * Back button
+     **/
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(ActivityResume.this, MainActivity.class);

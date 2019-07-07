@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
+    android:outlineSpotShadowColor="@color/colorAccent"
     app:cardCornerRadius="0dp">
 
     <RelativeLayout
@@ -24,6 +25,7 @@
             android:buttonTint="@color/colorPrimary" />
 
         <TextView
+            android:id="@+id/player_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

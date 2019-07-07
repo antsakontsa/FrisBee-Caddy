@@ -55,13 +55,13 @@ public class ActivityCourses extends AppCompatActivity {
                 parCount += Integer.parseInt(itemArray.get(i).getText2());
             }
 
-        /** Receive primitive data from and make new item with that information **/
-            mCourseList.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"),"Par:", Integer.toString(parCount), R.drawable.ic_delete));
+            /** Receive primitive data from and make new item with that information **/
+            mCourseList.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"), "Par:", Integer.toString(parCount), R.drawable.ic_delete));
 
             /** Give notification for user that course saved successfully **/
-            Toast toast= Toast.makeText(getApplicationContext(),
+            Toast toast = Toast.makeText(getApplicationContext(),
                     "Course: \"" + getIntent().getStringExtra("COURSENAME") + "\" saved successfully", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 400);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 400);
             toast.show();
 
             /** When item added to the list go back to main menu **/
@@ -140,7 +140,9 @@ public class ActivityCourses extends AppCompatActivity {
         });
     }
 
-    /** Back button **/
+    /**
+     * Back button
+     **/
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(ActivityCourses.this, MainActivity.class);

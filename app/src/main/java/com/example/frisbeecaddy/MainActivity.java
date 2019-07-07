@@ -60,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /** Back button **/
+    /**
+     * Back button
+     **/
     @Override
     public void onBackPressed() {
         /** This empty block disable back button in this Main menu **/

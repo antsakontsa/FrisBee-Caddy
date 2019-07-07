@@ -249,7 +249,9 @@ public class ActivityNewCourse extends AppCompatActivity {
         });
     }
 
-    /** Back button **/
+    /**
+     * Back button
+     **/
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(ActivityNewCourse.this, ActivityCourses.class);
