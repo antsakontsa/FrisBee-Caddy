@@ -22,26 +22,29 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ActivityNewGame.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
 
-        /** When "new game" button been clicked, go to ActivityNewGame **/
+        /** When "new game" button been clicked, go to ActivityResume **/
         resume = findViewById(R.id.resume_btn);
         resume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ActivityResume.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
 
-        /** When "courses" button been clicked, go to ActivityPlayers **/
+        /** When "courses" button been clicked, go to ActivityCourses **/
         courses = findViewById(R.id.courses_btn);
         courses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ActivityCourses.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
 
@@ -52,7 +55,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ActivityPlayers.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+    }
+
+    /** Back button **/
+    @Override
+    public void onBackPressed() {
+        /** This empty block disable back button in this Main menu **/
     }
 }

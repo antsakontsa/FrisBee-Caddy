@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -25,7 +26,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class ActivityPlayers extends AppCompatActivity {
-    private ArrayList<NameItem> mNameList;
+    public ArrayList<NameItem> mNameList;
 
     private RecyclerView mRecyclerViewPlayers;
     private NameAdapter mAdapter;
@@ -81,6 +82,10 @@ public class ActivityPlayers extends AppCompatActivity {
     }
 
     private void addItem(int position) {
+        /** Get user input (name) **/
+        textAdd = findViewById(R.id.name_input);
+
+        /** If no matches, add name to the list **/
         mNameList.add(position, new NameItem(textAdd.getText().toString().trim()));
         sortArrayList();
         saveData();
@@ -122,24 +127,14 @@ public class ActivityPlayers extends AppCompatActivity {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean contain = mNameList.contains(textAdd.getText().toString().trim());
+                /** Close soft keyboard first **/
+                InputMethodManager input = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                input.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
 
-                if (contain) {
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "Name: \"" + textAdd + "\" is already on a list...", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, -170, 592);
-                    toast.show();
-                } else {
-                    /** Close soft keyboard first **/
-                    InputMethodManager input = (InputMethodManager)
-                            getSystemService(Context.INPUT_METHOD_SERVICE);
-                    input.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                            InputMethodManager.HIDE_NOT_ALWAYS);
-
-                    /** Then add item **/
-                    int position = 0;
-                    addItem(position);
-                }
+                /** Then add item **/
+                addItem(0);
             }
         });
 
@@ -162,5 +157,13 @@ public class ActivityPlayers extends AppCompatActivity {
                 /** Have to be here even tho it's not containing anything **/
             }
         });
+    }
+
+    /** Back button **/
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ActivityPlayers.this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }
