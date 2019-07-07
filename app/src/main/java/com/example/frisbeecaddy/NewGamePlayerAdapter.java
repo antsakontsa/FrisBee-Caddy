@@ -46,7 +46,7 @@ public class NewGamePlayerAdapter extends RecyclerView.Adapter<NewGamePlayerAdap
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (compoundButton.isPressed()) {
-                    holder.mCheckBox.setChecked(currentItem.getCheckBox());
+                    holder.mCheckBox.setSelected(currentItem.getCheckBox());
                 }
             }
         });

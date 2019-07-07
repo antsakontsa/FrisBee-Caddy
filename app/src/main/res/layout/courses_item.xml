@@ -71,7 +71,7 @@
             android:layout_marginRight="2dp"
             android:text="57"
             android:textColor="@color/colorAccent"
-            android:textSize="22sp" />/>
+            android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/img_delete"

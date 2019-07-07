@@ -83,11 +83,19 @@ public class ActivityPlayers extends AppCompatActivity {
         /** Get user input (name) **/
         textAdd = findViewById(R.id.name_input);
 
-        /** If no matches, add name to the list **/
+        /** Add name to the list **/
         mNameList.add(position, new NameItem(textAdd.getText().toString().trim()));
+
+        /** sort that list **/
         sortArrayList();
+
+        /** save changes to shared preferences **/
         saveData();
+
+        /** Show changed list to user **/
         mAdapter.notifyItemInserted(position);
+
+        /** Clear the input field **/
         textAdd.getText().clear();
     }
 

@@ -22,11 +22,9 @@ import java.util.Comparator;
 
 public class ActivityCourses extends AppCompatActivity {
     private ArrayList<CoursesItem> mCourseList;
-
     private RecyclerView mRecyclerView;
     private CoursesAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
     private Button add_course;
 
     @Override
@@ -45,7 +43,6 @@ public class ActivityCourses extends AppCompatActivity {
     public void addItem() {
         /** This data comes from ActivityNewCourse **/
         if (getIntent().getStringExtra("COURSENAME") != null) {
-
             /** Store new course items in arraylist **/
             ArrayList<NewCourseItem> itemArray = (ArrayList<NewCourseItem>) getIntent().getSerializableExtra("COURSELIST");
 

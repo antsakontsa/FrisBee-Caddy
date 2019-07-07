@@ -20,9 +20,32 @@ public class ActivityNewGame extends AppCompatActivity {
         setContentView(R.layout.activity_new_game);
 
         ArrayList<NewGamePlayerItem> playerList = new ArrayList<>();
-        playerList.add(new NewGamePlayerItem(true, "Jack"));
-        playerList.add(new NewGamePlayerItem(true, "Jenny"));
-        playerList.add(new NewGamePlayerItem(true, "Michael"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
+        playerList.add(new NewGamePlayerItem(true, "A"));
 
         mRecyclerView = findViewById(R.id.recyclerViewChoosePlayer);
         mRecyclerView.setHasFixedSize(true);
