@@ -15,16 +15,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class ActivityPlayers extends AppCompatActivity {
-    public ArrayList<NameItem> mNameList;
+    public static ArrayList<NameItem> mNameList;
 
     private RecyclerView mRecyclerViewPlayers;
     private NameAdapter mAdapter;
@@ -58,24 +55,29 @@ public class ActivityPlayers extends AppCompatActivity {
     }
 
     private void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(mNameList);
-        editor.putString("task list", json);
-        editor.apply();
+        /** save data to shared pref **/
+        SharedPreferences prefs = getSharedPreferences("shared preference", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        try {
+            editor.putString("SharedPrefKey", ObjectSerializer.serialize(mNameList));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        editor.commit();
     }
 
     private void loadData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("task list", null);
-        Type type = new TypeToken<ArrayList<NameItem>>() {
-        }.getType();
-        mNameList = gson.fromJson(json, type);
-
         if (mNameList == null) {
             mNameList = new ArrayList<>();
+        }
+
+        SharedPreferences prefs = getSharedPreferences("shared preference", Context.MODE_PRIVATE);
+        try {
+            mNameList = (ArrayList<NameItem>) ObjectSerializer.deserialize(prefs.getString("SharedPrefKey", ObjectSerializer.serialize(new ArrayList<NameItem>())));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -89,7 +91,7 @@ public class ActivityPlayers extends AppCompatActivity {
         /** sort that list **/
         sortArrayList();
 
-        /** save changes to shared preferences **/
+        /** Save to shared pref **/
         saveData();
 
         /** Show changed list to user **/

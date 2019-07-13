@@ -5,13 +5,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class ActivityNewGame extends AppCompatActivity {
+    private ArrayList<NewGamePlayerItem> mPlayerList;
+
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private NewGamePlayerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
@@ -19,38 +26,28 @@ public class ActivityNewGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
 
-        ArrayList<NewGamePlayerItem> playerList = new ArrayList<>();
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
-        playerList.add(new NewGamePlayerItem(true, "A"));
+        insertNames();
+        buildRecyclerView();
+    }
 
+    private void insertNames() {
+        if (ActivityPlayers.mNameList == null) {
+            mPlayerList = new ArrayList<>();
+        } else {
+            mPlayerList = new ArrayList<>();
+
+            for (int i = 0; i < ActivityPlayers.mNameList.size(); i++) {
+                mPlayerList.add(new NewGamePlayerItem(true, ActivityPlayers.mNameList.get(i).getText1()));
+            }
+        }
+    }
+
+
+    private void buildRecyclerView() {
         mRecyclerView = findViewById(R.id.recyclerViewChoosePlayer);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new NewGamePlayerAdapter(playerList);
+        mAdapter = new NewGamePlayerAdapter(mPlayerList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -66,3 +63,4 @@ public class ActivityNewGame extends AppCompatActivity {
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }
+
