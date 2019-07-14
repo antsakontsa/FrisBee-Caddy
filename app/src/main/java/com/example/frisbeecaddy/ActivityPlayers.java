@@ -35,7 +35,7 @@ public class ActivityPlayers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_players);
 
-        loadData();
+        loadData(this);
         buildRecyclerView();
         setButtons();
     }
@@ -66,12 +66,12 @@ public class ActivityPlayers extends AppCompatActivity {
         editor.commit();
     }
 
-    private void loadData() {
+    public static void loadData(Context context) {
         if (mNameList == null) {
             mNameList = new ArrayList<>();
         }
 
-        SharedPreferences prefs = getSharedPreferences("shared preference", Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences("shared preference", Context.MODE_PRIVATE);
         try {
             mNameList = (ArrayList<NameItem>) ObjectSerializer.deserialize(prefs.getString("SharedPrefKey", ObjectSerializer.serialize(new ArrayList<NameItem>())));
         } catch (IOException e) {

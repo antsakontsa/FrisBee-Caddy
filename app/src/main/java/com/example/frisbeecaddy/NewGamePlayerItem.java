@@ -16,4 +16,8 @@ public class NewGamePlayerItem {
     public String getmText() {
         return mText;
     }
+
+    public void setSelected(boolean isSelected) {
+        mCheckBox = isSelected;
+    }
 }
