@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -55,11 +56,14 @@ public class ActivityCourses extends AppCompatActivity {
             /** Receive primitive data from and make new item with that information **/
             mCourseList.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"), "Par:", Integer.toString(parCount), R.drawable.ic_delete));
 
-            /** Give notification for user that course saved successfully **/
+            /** Give notification for user that course saved successfully
             Toast toast = Toast.makeText(getApplicationContext(),
                     "Course: \"" + getIntent().getStringExtra("COURSENAME") + "\" saved successfully", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 400);
-            toast.show();
+            toast.show();**/
+
+              StyleableToast.makeText(this, "COURSE: \"" + getIntent().getStringExtra("COURSENAME") + "\" SAVED SUCCESSFULLY", R.style.customToast).show();
+
 
             /** When item added to the list go back to main menu **/
             Intent intent = new Intent(ActivityCourses.this, MainActivity.class);

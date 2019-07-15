@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:outlineSpotShadowColor="@color/colorAccent"
+    app:cardCornerRadius="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="14dp"
+            />
+
+        <TextView
+            android:id="@+id/course_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/radioButton"
+            android:layout_toRightOf="@+id/radioButton"
+            android:text="Mukkula Etu9"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/holes_txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/course_name2"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_toEndOf="@+id/radioButton"
+            android:layout_toRightOf="@+id/radioButton"
+            android:paddingBottom="10dp"
+            android:text="Holes:"
+            android:textColor="@color/colorAccent"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/holes_number2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/course_name2"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/holes_txt2"
+            android:layout_toRightOf="@+id/holes_txt2"
+            android:text="99"
+            android:textColor="@color/colorAccent"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/par_txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/course_name2"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toStartOf="@+id/par_nm2"
+            android:layout_toLeftOf="@+id/par_nm2"
+            android:text="Par:"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/par_nm2"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/course_name2"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:text="57"
+            android:textColor="@color/colorAccent"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
