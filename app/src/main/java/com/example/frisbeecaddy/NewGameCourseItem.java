@@ -14,7 +14,9 @@ public class NewGameCourseItem {
         mParNm = parNm;
     }
 
-    public boolean getRadioButton() { return mRadioButton; }
+    public boolean getRadioButton() {
+        return mRadioButton;
+    }
 
     public String getCourseName() {
         return mCourseName;

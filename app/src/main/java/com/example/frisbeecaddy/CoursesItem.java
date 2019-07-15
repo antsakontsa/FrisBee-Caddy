@@ -1,6 +1,8 @@
 package com.example.frisbeecaddy;
 
-public class CoursesItem {
+import java.io.Serializable;
+
+public class CoursesItem implements Serializable  {
     private String mCourseName, mHolesTxt, mHolesNm, mParTxt, mParNm;
     private int mDelete;
 

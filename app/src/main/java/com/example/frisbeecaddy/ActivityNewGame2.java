@@ -11,23 +11,39 @@ import java.util.ArrayList;
 
 public class ActivityNewGame2 extends AppCompatActivity {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private NewGameCourseAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private ArrayList<NewGameCourseItem> mCourseList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game2);
 
-        ArrayList<NewGameCourseItem> courseList = new ArrayList<>();
-        courseList.add(new NewGameCourseItem(false, "Mukkula Koko 18 (Abc)", "Holes:", "18", "Par:", "61"));
-        courseList.add(new NewGameCourseItem(false, "Mukkula Koko 18 (Abc)", "Holes:", "18", "Par:", "61"));
-        courseList.add(new NewGameCourseItem(false, "Mukkula Koko 18 (Abc)", "Holes:", "18", "Par:", "61"));
+        /** This have to be loaded from ActivityCourses, otherwise cannot render this list when app starts **/
+        ActivityCourses.loadData(this);
+        insertNames();
+        buildRecyclerView();
+    }
 
+    private void insertNames() {
+        if (ActivityCourses.mCourseList == null) {
+            mCourseList = new ArrayList<>();
+        } else {
+            mCourseList = new ArrayList<>();
+
+            for (int i = 0; i < ActivityCourses.mCourseList.size(); i++) {
+                mCourseList.add(new NewGameCourseItem(false, ActivityCourses.mCourseList.get(i).getCourseName(), "Holes:", ActivityCourses.mCourseList.get(i).getHolesNm(), "Par:", ActivityCourses.mCourseList.get(i).getParNm()));
+            }
+        }
+    }
+
+    private void buildRecyclerView() {
         mRecyclerView = findViewById(R.id.recyclerViewChooseCourse);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new NewGameCourseAdapter(courseList);
+        mAdapter = new NewGameCourseAdapter(mCourseList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);

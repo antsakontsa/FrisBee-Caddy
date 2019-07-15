@@ -4,25 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.muddzdev.styleabletoast.StyleableToast;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class ActivityCourses extends AppCompatActivity {
-    private ArrayList<CoursesItem> mCourseList;
+    public static ArrayList<CoursesItem> mCourseList;
     private RecyclerView mRecyclerView;
     private CoursesAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -33,7 +30,7 @@ public class ActivityCourses extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
 
-        loadData();
+        loadData(this);
         buildRecyclerView();
         addItem();
         sortArrayList();
@@ -57,13 +54,12 @@ public class ActivityCourses extends AppCompatActivity {
             mCourseList.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"), "Par:", Integer.toString(parCount), R.drawable.ic_delete));
 
             /** Give notification for user that course saved successfully
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Course: \"" + getIntent().getStringExtra("COURSENAME") + "\" saved successfully", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 400);
-            toast.show();**/
+             Toast toast = Toast.makeText(getApplicationContext(),
+             "Course: \"" + getIntent().getStringExtra("COURSENAME") + "\" saved successfully", Toast.LENGTH_LONG);
+             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 400);
+             toast.show();**/
 
-              StyleableToast.makeText(this, "COURSE: \"" + getIntent().getStringExtra("COURSENAME") + "\" SAVED SUCCESSFULLY", R.style.customToast).show();
-
+            StyleableToast.makeText(this, "COURSE: \"" + getIntent().getStringExtra("COURSENAME") + "\" SAVED SUCCESSFULLY", R.style.customToast).show();
 
             /** When item added to the list go back to main menu **/
             Intent intent = new Intent(ActivityCourses.this, MainActivity.class);
@@ -73,24 +69,29 @@ public class ActivityCourses extends AppCompatActivity {
     }
 
     private void saveData() {
-        SharedPreferences sharedPreferences2 = getSharedPreferences("shared preferences2", MODE_PRIVATE);
-        SharedPreferences.Editor editor2 = sharedPreferences2.edit();
-        Gson gson2 = new Gson();
-        String json2 = gson2.toJson(mCourseList);
-        editor2.putString("task list2", json2);
-        editor2.apply();
+        /** save data to shared pref **/
+        SharedPreferences prefs = getSharedPreferences("shared preference3", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        try {
+            editor.putString("SharedPrefKey3", ObjectSerializer.serialize(mCourseList));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        editor.commit();
     }
 
-    private void loadData() {
-        SharedPreferences sharedPreferences2 = getSharedPreferences("shared preferences2", MODE_PRIVATE);
-        Gson gson2 = new Gson();
-        String json2 = sharedPreferences2.getString("task list2", null);
-        Type type2 = new TypeToken<ArrayList<CoursesItem>>() {
-        }.getType();
-        mCourseList = gson2.fromJson(json2, type2);
-
+    public static void loadData(Context context) {
         if (mCourseList == null) {
             mCourseList = new ArrayList<>();
+        }
+
+        SharedPreferences prefs = context.getSharedPreferences("shared preference3", Context.MODE_PRIVATE);
+        try {
+            mCourseList = (ArrayList<CoursesItem>) ObjectSerializer.deserialize(prefs.getString("SharedPrefKey3", ObjectSerializer.serialize(new ArrayList<CoursesItem>())));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
