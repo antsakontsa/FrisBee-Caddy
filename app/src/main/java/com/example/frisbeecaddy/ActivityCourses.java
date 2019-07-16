@@ -128,13 +128,13 @@ public class ActivityCourses extends AppCompatActivity {
     private void removeItem(final int position) {
         /** Create dialog which ask if user is sure about delete name from list **/
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete player");
+        builder.setTitle("Delete Course");
         builder.setIcon(R.mipmap.ic_launcher);
-        builder.setMessage("Do you want to delete course: \"" + mCourseList.get(position).getCourseName() + "\"?")
+        builder.setMessage("Do you want to delete course: \n\n\"" + mCourseList.get(position).getCourseName() + "\"?")
                 .setCancelable(false)
 
-                /** If user click "ok" button, delete player from list and save changes **/
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                /** If user click "yes" button, delete player from list and save changes **/
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         mCourseList.remove(position);
@@ -143,8 +143,8 @@ public class ActivityCourses extends AppCompatActivity {
                     }
                 })
 
-                /** If user click "cancel" button, name won't delete from list **/
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                /** If user click "no" button, name won't delete from list **/
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
