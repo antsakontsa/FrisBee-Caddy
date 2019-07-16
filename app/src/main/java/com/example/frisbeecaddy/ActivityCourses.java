@@ -1,15 +1,19 @@
 package com.example.frisbeecaddy;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.muddzdev.styleabletoast.StyleableToast;
 
@@ -53,13 +57,11 @@ public class ActivityCourses extends AppCompatActivity {
             /** Receive primitive data from and make new item with that information **/
             mCourseList.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"), "Par:", Integer.toString(parCount), R.drawable.ic_delete));
 
-            /** Give notification for user that course saved successfully
+            /** Give notification for user that course saved successfully **/
              Toast toast = Toast.makeText(getApplicationContext(),
              "Course: \"" + getIntent().getStringExtra("COURSENAME") + "\" saved successfully", Toast.LENGTH_LONG);
              toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 400);
-             toast.show();**/
-
-            StyleableToast.makeText(this, "COURSE: \"" + getIntent().getStringExtra("COURSENAME") + "\" SAVED SUCCESSFULLY", R.style.customToast).show();
+             toast.show();
 
             /** When item added to the list go back to main menu **/
             Intent intent = new Intent(ActivityCourses.this, MainActivity.class);
@@ -123,10 +125,37 @@ public class ActivityCourses extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
-    private void removeItem(int position) {
-        mCourseList.remove(position);
-        saveData();
-        mAdapter.notifyDataSetChanged();
+    private void removeItem(final int position) {
+        /** Create dialog which ask if user is sure about delete name from list **/
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete player");
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("Do you want to delete course: \"" + mCourseList.get(position).getCourseName() + "\"?")
+                .setCancelable(false)
+
+                /** If user click "ok" button, delete player from list and save changes **/
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mCourseList.remove(position);
+                        mAdapter.notifyDataSetChanged();
+                        saveData();
+                    }
+                })
+
+                /** If user click "cancel" button, name won't delete from list **/
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+        /** Create Dialog **/
+        AlertDialog alert = builder.create();
+        alert.show();
+        alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(R.style.AlertDialogCustom);
+        alert.getButton(alert.BUTTON_POSITIVE).setTextColor(R.style.AlertDialogCustom);
     }
 
     private void setButtons() {

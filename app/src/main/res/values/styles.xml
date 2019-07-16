@@ -8,10 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="customToast">
-        <item name="stColorBackground">#16a11d</item>
-        <item name="stTextColor">@color/colorAccent</item>
-        <item name="stLength">LONG</item>
-        <item name="stGravity">top</item>
+    <style name="AlertDialogCustom">
+        <item name="colorPrimary">@color/colorPrimary</item>
     </style>
 </resources>

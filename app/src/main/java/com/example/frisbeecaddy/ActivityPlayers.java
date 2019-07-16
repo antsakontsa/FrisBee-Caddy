@@ -1,10 +1,12 @@
 package com.example.frisbeecaddy;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -101,9 +103,37 @@ public class ActivityPlayers extends AppCompatActivity {
         textAdd.getText().clear();
     }
 
-    private void removeItem(int position) {
-        mNameList.remove(position);
-        mAdapter.notifyItemRemoved(position);
+    private void removeItem(final int position) {
+        /** Create dialog which ask if user is sure about delete name from list **/
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete player");
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("Do you want to delete player: \"" + mNameList.get(position).getText1() + "\"?")
+                .setCancelable(false)
+
+                /** If user click "ok" button, delete player from list and save changes **/
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mNameList.remove(position);
+                        mAdapter.notifyItemRemoved(position);
+                        saveData();
+                    }
+                })
+
+                /** If user click "cancel" button, name won't delete from list **/
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+        /** Create Dialog **/
+        AlertDialog alert = builder.create();
+        alert.show();
+        alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(R.style.AlertDialogCustom);
+        alert.getButton(alert.BUTTON_POSITIVE).setTextColor(R.style.AlertDialogCustom);
     }
 
     private void buildRecyclerView() {

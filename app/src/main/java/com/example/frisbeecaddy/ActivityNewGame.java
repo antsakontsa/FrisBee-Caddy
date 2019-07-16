@@ -18,20 +18,20 @@ public class ActivityNewGame extends AppCompatActivity {
     private NewGamePlayerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private Button next;
+    private Button mNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
+        mNext = findViewById(R.id.button_next);
 
         /** This have to be loaded from ActivityPlayers, otherwise cannot render this list when app starts **/
         ActivityPlayers.loadData(this);
         insertNames();
         buildRecyclerView();
 
-        next = findViewById(R.id.button_next);
-        next.setOnClickListener(new View.OnClickListener() {
+        mNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ActivityNewGame.this, ActivityNewGame2.class);
