@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="@dimen/_8sdp"
     android:outlineSpotShadowColor="@color/colorAccent"
     app:cardCornerRadius="0dp">
 
@@ -19,52 +19,52 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="14dp" />
+            android:layout_marginTop="@dimen/_11sdp" />
 
         <TextView
             android:id="@+id/course_name2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/radioButton"
             android:layout_toRightOf="@+id/radioButton"
             android:text="Mukkula Etu9"
             android:textColor="@color/colorPrimary"
-            android:textSize="25sp" />
+            android:textSize="@dimen/_19sdp" />
 
         <TextView
             android:id="@+id/holes_txt2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/course_name2"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
             android:layout_toEndOf="@+id/radioButton"
             android:layout_toRightOf="@+id/radioButton"
-            android:paddingBottom="10dp"
+            android:paddingBottom="@dimen/_8sdp"
             android:text="Holes:"
             android:textColor="@color/colorAccent"
-            android:textSize="22sp" />
+            android:textSize="@dimen/_17sdp" />
 
         <TextView
             android:id="@+id/holes_number2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/course_name2"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginLeft="@dimen/_4sdp"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/holes_txt2"
             android:layout_toRightOf="@+id/holes_txt2"
             android:text="99"
             android:textColor="@color/colorAccent"
-            android:textSize="22sp" />
+            android:textSize="@dimen/_17sdp" />
 
         <TextView
             android:id="@+id/par_txt2"
@@ -72,18 +72,18 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/course_name2"
             android:layout_marginTop="0dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_marginRight="@dimen/_4sdp"
             android:layout_toStartOf="@+id/par_nm2"
             android:layout_toLeftOf="@+id/par_nm2"
             android:text="Par:"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:textSize="22sp" />
+            android:textSize="@dimen/_17sdp" />
 
         <TextView
             android:id="@+id/par_nm2"
-            android:layout_width="170dp"
+            android:layout_width="@dimen/_111sdp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/course_name2"
             android:layout_alignParentEnd="true"
@@ -93,6 +93,6 @@
             android:layout_marginRight="0dp"
             android:text="57"
             android:textColor="@color/colorAccent"
-            android:textSize="22sp" />
+            android:textSize="@dimen/_17sdp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
