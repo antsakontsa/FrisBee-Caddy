@@ -1,91 +1,68 @@
 package com.example.frisbeecaddy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private Button players, courses, newGame, resume;
+    private ArrayList<MainActivityItem> mMainList;
+
+    private RecyclerView mRecyclerView;
+    private MainActivityAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+    private Button newGame, resume, courses, players;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /** These are for "new game" button **/
-        ActivityPlayers.loadData(this);
-        ActivityCourses.loadData(this);
+        mMainList = new ArrayList<>();
 
-        /** When "new game" button been clicked, go to ActivityNewGame **/
-        newGame = findViewById(R.id.new_game_btn);
-        newGame.setOnClickListener(new View.OnClickListener() {
+        mMainList.add(new MainActivityItem("NEW GAME"));
+        mMainList.add(new MainActivityItem("RESUME"));
+        mMainList.add(new MainActivityItem("COURSES"));
+        mMainList.add(new MainActivityItem("PLAYERS"));
+
+        mRecyclerView = findViewById(R.id.mainRecyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new MainActivityAdapter(mMainList);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new MainActivityAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                /** If namelist and courselist are both empty **/
-                if (ActivityPlayers.mNameList.isEmpty() && ActivityCourses.mCourseList.isEmpty()) {
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "ADD AT LEAST (1) PLAYER AND (1) COURSE", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
-                    toast.show();
-
-                    /** If courselist is empty but namelist don't **/
-                } else if (!ActivityPlayers.mNameList.isEmpty() && ActivityCourses.mCourseList.isEmpty()) {
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "ADD AT LEAST (1) COURSE", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
-                    toast.show();
-
-                    /** If namelist is not empty but courselist don't **/
-                } else if (ActivityPlayers.mNameList.isEmpty() && !ActivityCourses.mCourseList.isEmpty()) {
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "ADD AT LEAST (1) PLAYER", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
-                    toast.show();
-
-                    /** If both are not empty **/
-                } else {
+            public void onItemCLick(int position) {
+                if (position == 0) {
+                    /** when "new game" button been clicked, go to ActivityNewGame **/
                     Intent intent = new Intent(MainActivity.this, ActivityNewGame.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                } else if (position == 1) {
+                    /** when "new game" button been clicked, go to ActivityResume **/
+                    Intent intent = new Intent(MainActivity.this, ActivityResume.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                } else if (position == 2) {
+                    /** when "new game" button been clicked, go to ActivityCourses **/
+                    Intent intent = new Intent(MainActivity.this, ActivityCourses.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                } else {
+                    /** when "new game" button been clicked, go to ActivityPlayers **/
+                    Intent intent = new Intent(MainActivity.this, ActivityPlayers.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
-            }
-        });
-
-        /** When "new game" button been clicked, go to ActivityResume **/
-        resume = findViewById(R.id.resume_btn);
-        resume.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ActivityResume.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        });
-
-        /** When "courses" button been clicked, go to ActivityCourses **/
-        courses = findViewById(R.id.courses_btn);
-        courses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ActivityCourses.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        });
-
-        /** When "players" button been clicked, go to ActivityPlayers **/
-        players = findViewById(R.id.players_btn);
-        players.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ActivityPlayers.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
