@@ -15,8 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.muddzdev.styleabletoast.StyleableToast;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,10 +56,10 @@ public class ActivityCourses extends AppCompatActivity {
             mCourseList.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"), "Par:", Integer.toString(parCount), R.drawable.ic_delete));
 
             /** Give notification for user that course saved successfully **/
-             Toast toast = Toast.makeText(getApplicationContext(),
-             "Course: \"" + getIntent().getStringExtra("COURSENAME") + "\" saved successfully", Toast.LENGTH_LONG);
-             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 400);
-             toast.show();
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Course: \"" + getIntent().getStringExtra("COURSENAME") + "\" saved successfully", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
+            toast.show();
 
             /** When item added to the list go back to main menu **/
             Intent intent = new Intent(ActivityCourses.this, MainActivity.class);

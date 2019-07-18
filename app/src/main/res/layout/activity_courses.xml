@@ -8,15 +8,15 @@
     tools:context=".ActivityCourses">
 
     <TextView
-        android:id="@+id/courses_txt"
-        android:layout_width="0dp"
+        android:id="@+id/new_course_txt"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_23sdp"
+        android:layout_marginLeft="@dimen/_23sdp"
         android:layout_marginTop="@dimen/_23sdp"
-        android:text="Courses"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/_38sdp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="New course:"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/_23sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,9 +26,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_23sdp"
         android:layout_marginLeft="@dimen/_23sdp"
-        android:layout_marginTop="@dimen/_23sdp"
         android:layout_marginEnd="@dimen/_23sdp"
         android:layout_marginRight="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:background="@drawable/border_box"
         android:padding="@dimen/_11sdp"
         android:text="add new course"
@@ -36,7 +36,7 @@
         android:textSize="@dimen/_19sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courses_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/new_course_txt" />
 
     <TextView
         android:id="@+id/course_list_txt"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_23sdp"
         android:layout_marginLeft="@dimen/_23sdp"
-        android:layout_marginTop="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:text="Course list:"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/_23sdp"
@@ -59,7 +59,7 @@
         android:layout_marginLeft="@dimen/_25sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:layout_marginRight="@dimen/_16sdp"
-        android:layout_marginBottom="@dimen/_23sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
         android:scrollbarFadeDuration="1500"
         android:scrollbarSize="@dimen/_2sdp"
         android:scrollbarStyle="outsideInset"

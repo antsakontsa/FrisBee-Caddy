@@ -8,30 +8,17 @@
     tools:context=".ActivityPlayers">
 
     <TextView
-        android:id="@+id/players_txt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_23sdp"
-        android:text="Players"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/_38sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/new_player_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_23sdp"
         android:layout_marginLeft="@dimen/_23sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:text="New player:"
+        android:layout_marginTop="@dimen/_23sdp"
+        android:text="Add new player:"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/_23sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/players_txt" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/name_input"
@@ -73,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_23sdp"
         android:layout_marginLeft="@dimen/_23sdp"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:text="Player list:"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/_23sdp"
@@ -88,7 +75,7 @@
         android:layout_marginLeft="@dimen/_25sdp"
         android:layout_marginEnd="@dimen/_15sdp"
         android:layout_marginRight="@dimen/_15sdp"
-        android:layout_marginBottom="@dimen/_23sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
         android:background="@color/colorPrimaryDark"
         android:scrollbarFadeDuration="1500"
         android:scrollbarSize="@dimen/_2sdp"

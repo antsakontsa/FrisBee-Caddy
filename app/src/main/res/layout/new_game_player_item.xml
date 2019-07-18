@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="@dimen/_1sdp"
             android:button="@drawable/custom_checkbox" />
 
         <TextView

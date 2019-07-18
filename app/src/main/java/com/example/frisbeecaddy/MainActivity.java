@@ -30,21 +30,21 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityPlayers.mNameList.isEmpty() && ActivityCourses.mCourseList.isEmpty()) {
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "ADD AT LEAST (1) PLAYER AND (1) COURSE", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 400);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
                     toast.show();
 
                     /** If courselist is empty but namelist don't **/
                 } else if (!ActivityPlayers.mNameList.isEmpty() && ActivityCourses.mCourseList.isEmpty()) {
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "ADD AT LEAST (1) COURSE", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 400);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
                     toast.show();
 
                     /** If namelist is not empty but courselist don't **/
                 } else if (ActivityPlayers.mNameList.isEmpty() && !ActivityCourses.mCourseList.isEmpty()) {
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "ADD AT LEAST (1) PLAYER", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 400);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
                     toast.show();
 
                     /** If both are not empty **/

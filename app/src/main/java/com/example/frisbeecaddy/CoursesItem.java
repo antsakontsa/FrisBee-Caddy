@@ -2,7 +2,7 @@ package com.example.frisbeecaddy;
 
 import java.io.Serializable;
 
-public class CoursesItem implements Serializable  {
+public class CoursesItem implements Serializable {
     private String mCourseName, mHolesTxt, mHolesNm, mParTxt, mParNm;
     private int mDelete;
 
