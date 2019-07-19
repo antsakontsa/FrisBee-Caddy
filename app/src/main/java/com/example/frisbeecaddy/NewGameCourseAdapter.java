@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class NewGameCourseAdapter extends RecyclerView.Adapter<NewGameCourseAdapter.NewGameCourseViewHolder> {
     private ArrayList<NewGameCourseItem> mCourseList;
+    private int selectedPosition = -1;// no selection by default
+
 
     public static class NewGameCourseViewHolder extends RecyclerView.ViewHolder {
         public RadioButton mRadioButton;
@@ -43,20 +45,26 @@ public class NewGameCourseAdapter extends RecyclerView.Adapter<NewGameCourseAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewGameCourseViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final NewGameCourseViewHolder holder, final int position) {
         final NewGameCourseItem currentItem = mCourseList.get(position);
 
-        //in some cases, it will prevent unwanted situations
+        /** This can prevent some unwanted actions in some cases **/
         holder.mRadioButton.setOnCheckedChangeListener(null);
 
-        //if true, your checkbox will be selected, else unselected
-        holder.mRadioButton.setChecked(currentItem.getRadioButton());
+        holder.mRadioButton.setChecked(selectedPosition == position);
 
         holder.mRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //set your object's last status
-                currentItem.setSelected(isChecked);
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                selectedPosition = holder.getAdapterPosition();
+
+                if (selectedPosition == position) {
+                    holder.mRadioButton.setChecked(true);
+                    notifyDataSetChanged();
+                } else {
+                    holder.mRadioButton.setChecked(false);
+                    notifyDataSetChanged();
+                }
             }
         });
 

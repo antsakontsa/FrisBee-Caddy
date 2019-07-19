@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class ActivityNewGame extends AppCompatActivity {
     private ArrayList<NewGamePlayerItem> mPlayerList;
+    private ArrayList<String> mCheckedBoxes;
 
     private RecyclerView mRecyclerView;
     private NewGamePlayerAdapter mAdapter;
@@ -34,11 +35,26 @@ public class ActivityNewGame extends AppCompatActivity {
         mNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /** Get all checked names to the mCheckedBoxes Arraylist **/
+                checkCheckBoxes();
+
                 Intent intent = new Intent(ActivityNewGame.this, ActivityNewGame2.class);
+                /** Send those names with Intent **/
+                intent.putStringArrayListExtra("CHECKEDITEMS", mCheckedBoxes);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+    }
+
+    private void checkCheckBoxes() {
+        mCheckedBoxes = new ArrayList<>();
+
+        for (int i = 0; i < mPlayerList.size(); i++) {
+            if (mPlayerList.get(i).getCheckBox() == true) {
+                mCheckedBoxes.add(mPlayerList.get(i).getmText());
+            }
+        }
     }
 
     private void insertNames() {

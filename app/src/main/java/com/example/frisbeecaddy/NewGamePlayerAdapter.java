@@ -39,23 +39,24 @@ public class NewGamePlayerAdapter extends RecyclerView.Adapter<NewGamePlayerAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final NewGamePlayerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final NewGamePlayerViewHolder holder, final int position) {
         final NewGamePlayerItem currentItem = mNewGamePlayerList.get(position);
 
-        //in some cases, it will prevent unwanted situations
+        /** In some cases, this will prevent unwanted situations **/
         holder.mCheckBox.setOnCheckedChangeListener(null);
 
-        //if true, your checkbox will be selected, else unselected
+        /** If true, checkbox will be selected, else unselected **/
         holder.mCheckBox.setChecked(currentItem.getCheckBox());
 
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //set your object's last status
+                /** set object's last status **/
                 currentItem.setSelected(isChecked);
             }
         });
 
+        /** Set name **/
         holder.mName.setText(currentItem.getmText());
     }
 

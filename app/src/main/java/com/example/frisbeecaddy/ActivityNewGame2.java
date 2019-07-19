@@ -15,6 +15,7 @@ public class ActivityNewGame2 extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private ArrayList<NewGameCourseItem> mCourseList;
+    private ArrayList<String> mNameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,10 @@ public class ActivityNewGame2 extends AppCompatActivity {
         ActivityCourses.loadData(this);
         insertNames();
         buildRecyclerView();
+
+        /** Keep checked names from previous activity **/
+        mNameList = new ArrayList<>();
+        mNameList = getIntent().getStringArrayListExtra("CHECKEDITEMS");
     }
 
     private void insertNames() {

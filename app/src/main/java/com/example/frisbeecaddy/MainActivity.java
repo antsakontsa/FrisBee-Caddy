@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        /** These are for main Menu buttons **/
+        /** These are for main menu buttons **/
         ActivityPlayers.loadData(this);
         ActivityCourses.loadData(this);
 
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
                         toast.show();
 
-                        /** If both contains at least 1 item, then go to ActivityNewGame **/
+                        /** If both contains at least 1 item **/
                     } else {
                         /** ...Go to ActivityNewGame **/
                         Intent intent = new Intent(MainActivity.this, ActivityNewGame.class);

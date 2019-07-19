@@ -15,13 +15,13 @@
             android:id="@+id/mainMenuTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="NEW GAME"
-            android:textColor="@color/colorAccent"
-            android:textAlignment="center"
-            android:textSize="@dimen/_23sdp"
-            android:padding="@dimen/_32sdp"
             android:layout_marginRight="@dimen/_6sdp"
-            android:background="@drawable/border_box"/>
+            android:background="@drawable/border_box"
+            android:padding="@dimen/_32sdp"
+            android:text="NEW GAME"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_23sdp" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
