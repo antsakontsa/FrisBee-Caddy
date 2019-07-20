@@ -1,9 +1,11 @@
 package com.example.frisbeecaddy;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         ActivityPlayers.loadData(this);
         ActivityCourses.loadData(this);
 
+        /** This is for dialog in adapter **/
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
         mAdapter.setOnItemClickListener(new MainActivityAdapter.OnItemClickListener() {
             @Override
             public void onItemCLick(int position) {
@@ -53,24 +58,66 @@ public class MainActivity extends AppCompatActivity {
                 if (position == 0) {
                     /** If courselist and namelist are both empty **/
                     if (ActivityCourses.mCourseList.isEmpty() && ActivityPlayers.mNameList.isEmpty()) {
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "Add at least (1) course and (1) player", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
-                        toast.show();
+                        /** Create dialog **/
+                        builder.setTitle("Addings");
+                        builder.setIcon(R.mipmap.ic_launcher);
+                        builder.setMessage("You need to add at least (1):\n\n - Course\n - Player")
+
+                                .setCancelable(false)
+
+                                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                });
+
+                        /** Build Dialog **/
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                        alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(R.style.AlertDialogCustom);
 
                         /** If only courselist is empty **/
                     } else if (ActivityCourses.mCourseList.isEmpty() && !ActivityPlayers.mNameList.isEmpty()) {
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "Add at least (1) course", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
-                        toast.show();
+                        /** Create dialog **/
+                        builder.setTitle("Addings");
+                        builder.setIcon(R.mipmap.ic_launcher);
+                        builder.setMessage("You still need to add at least (1):\n\n - Course")
+
+                                .setCancelable(false)
+
+                                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                });
+
+                        /** Build Dialog **/
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                        alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(R.style.AlertDialogCustom);
 
                         /** If only playerlist is empty **/
                     } else if (!ActivityCourses.mCourseList.isEmpty() && ActivityPlayers.mNameList.isEmpty()) {
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "Add at least (1) player", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
-                        toast.show();
+                        /** Create dialog **/
+                        builder.setTitle("Addings");
+                        builder.setIcon(R.mipmap.ic_launcher);
+                        builder.setMessage("You still need to add at least (1):\n\n - Player")
+
+                                .setCancelable(false)
+
+                                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                });
+
+                        /** Build Dialog **/
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                        alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(R.style.AlertDialogCustom);
 
                         /** If both contains at least 1 item **/
                     } else {
@@ -81,19 +128,19 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 } else if (position == 1) {
-                    /** when "new game" button been clicked, go to ActivityResume **/
+                    /** when "resume" button been clicked, go to ActivityResume **/
                     Intent intent = new Intent(MainActivity.this, ActivityResume.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 } else if (position == 2) {
-                    /** when "new game" button been clicked, go to ActivityCourses **/
+                    /** when "courses" button been clicked, go to ActivityCourses **/
                     Intent intent = new Intent(MainActivity.this, ActivityCourses.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 } else {
-                    /** when "new game" button been clicked, go to ActivityPlayers **/
+                    /** when "players" button been clicked, go to ActivityPlayers **/
                     Intent intent = new Intent(MainActivity.this, ActivityPlayers.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

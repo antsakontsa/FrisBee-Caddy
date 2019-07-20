@@ -164,6 +164,9 @@ public class ActivityPlayers extends AppCompatActivity {
         buttonAdd = findViewById(R.id.add_btn);
         buttonAdd.setEnabled(false);
 
+        /** This is for dialog **/
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
         /** When "add" button been clicked... **/
         textAdd = findViewById(R.id.name_input);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
@@ -192,11 +195,24 @@ public class ActivityPlayers extends AppCompatActivity {
                     /** ...add a name to the namelist **/
                     addItem(0);
                 } else {
-                    /** if name in a list == name from input, give toast **/
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "This name is already on a list", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, -100, 200);
-                    toast.show();
+                    /** Create dialog **/
+                    builder.setTitle("Naming error");
+                    builder.setIcon(R.mipmap.ic_launcher);
+                    builder.setMessage("This player name is already on a list")
+
+                            .setCancelable(false)
+
+                            .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            });
+
+                    /** Build Dialog **/
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(R.style.AlertDialogCustom);
                 }
             }
         });

@@ -1,9 +1,11 @@
 package com.example.frisbeecaddy;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -230,6 +232,8 @@ public class ActivityNewCourse extends AppCompatActivity {
             }
         });
 
+        /** This is for dialog **/
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         /** When "save course" button been clicked, go to ActivityCourses and there, save new course data into the item **/
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -259,11 +263,24 @@ public class ActivityNewCourse extends AppCompatActivity {
                     intent.putExtra("COURSELIST", mNewCourseList);
                     startActivity(intent);
                 } else {
-                    /** if name in a list == name from input, give toast **/
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "This name is already on a list", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 200);
-                    toast.show();
+                    /** Create dialog **/
+                    builder.setTitle("Naming error");
+                    builder.setIcon(R.mipmap.ic_launcher);
+                    builder.setMessage("This course name is already on a list")
+
+                            .setCancelable(false)
+
+                            .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            });
+
+                    /** Build Dialog **/
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(R.style.AlertDialogCustom);
                 }
             }
         });
