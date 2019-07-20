@@ -14,8 +14,7 @@ import java.util.ArrayList;
 
 public class NewGameCourseAdapter extends RecyclerView.Adapter<NewGameCourseAdapter.NewGameCourseViewHolder> {
     private ArrayList<NewGameCourseItem> mCourseList;
-    private int selectedPosition = -1;// no selection by default
-
+    private int selectedPosition = -1; /** No selection by default **/
 
     public static class NewGameCourseViewHolder extends RecyclerView.ViewHolder {
         public RadioButton mRadioButton;
