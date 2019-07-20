@@ -12,10 +12,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,6 +33,8 @@ public class ActivityPlayers extends AppCompatActivity {
 
     private Button buttonAdd;
     private EditText textAdd;
+
+    private int checkNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,19 +164,40 @@ public class ActivityPlayers extends AppCompatActivity {
         buttonAdd = findViewById(R.id.add_btn);
         buttonAdd.setEnabled(false);
 
-        /** When "add" button been clicked, add a name to the namelist **/
+        /** When "add" button been clicked... **/
         textAdd = findViewById(R.id.name_input);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                /** Close soft keyboard first **/
-                InputMethodManager input = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-                input.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
 
-                /** Then add item **/
-                addItem(0);
+                /** Loop the list **/
+                for (int i = 0; i < mNameList.size(); i++) {
+                    if (mNameList.get(i).getText1().equalsIgnoreCase(textAdd.getText().toString().trim())) {
+                        checkNumber = 1;
+                        break;
+                    } else {
+                        checkNumber = 0;
+                    }
+                }
+
+                /** if checkNumber is still 0 **/
+                if (checkNumber == 0) {
+                    /** Close soft keyboard **/
+                    InputMethodManager input = (InputMethodManager)
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
+                    input.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    /** ...add a name to the namelist **/
+                    addItem(0);
+                } else {
+                    /** if name in a list == name from input, give toast **/
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "This name is already on a list", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, -100, 200);
+                    toast.show();
+                }
             }
         });
 

@@ -8,10 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,6 +31,7 @@ public class ActivityNewCourse extends AppCompatActivity {
     private TextView number;
 
     private int counter;
+    private int counter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -236,15 +239,32 @@ public class ActivityNewCourse extends AppCompatActivity {
                 String intentCourseName = courseName.getText().toString().trim();
                 String holeNumber = number.getText().toString().trim();
 
-                Intent intent = new Intent(ActivityNewCourse.this, ActivityCourses.class);
+                for (int i = 0; i < ActivityCourses.mCourseList.size(); i++) {
+                    if (ActivityCourses.mCourseList.get(i).getCourseName().equalsIgnoreCase(courseName.getText().toString().trim())) {
+                        counter2 = 1;
+                        break;
+                    } else {
+                        counter2 = 0;
+                    }
+                }
 
-                /** Intent primitive data **/
-                intent.putExtra("COURSENAME", intentCourseName);
-                intent.putExtra("HOLENUMBER", holeNumber);
+                if (counter2 == 0) {
+                    Intent intent = new Intent(ActivityNewCourse.this, ActivityCourses.class);
 
-                /** Intent Arraylist **/
-                intent.putExtra("COURSELIST", mNewCourseList);
-                startActivity(intent);
+                    /** Intent primitive data **/
+                    intent.putExtra("COURSENAME", intentCourseName);
+                    intent.putExtra("HOLENUMBER", holeNumber);
+
+                    /** Intent Arraylist **/
+                    intent.putExtra("COURSELIST", mNewCourseList);
+                    startActivity(intent);
+                } else {
+                    /** if name in a list == name from input, give toast **/
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "This name is already on a list", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 200);
+                    toast.show();
+                }
             }
         });
     }
