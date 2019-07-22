@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,8 @@ public class ActivityNewGame2 extends AppCompatActivity {
     private ArrayList<NewGameCourseItem> mCourseList;
     private ArrayList<String> mNameList;
 
+    private Button mStartGame;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +29,7 @@ public class ActivityNewGame2 extends AppCompatActivity {
         ActivityCourses.loadData(this);
         insertNames();
         buildRecyclerView();
+        setButtons();
 
         /** Keep checked names from previous activity **/
         mNameList = new ArrayList<>();
@@ -52,6 +56,25 @@ public class ActivityNewGame2 extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        /** This uses NewGamePlayerAdapter (its interface) not NewGameCoursesAdapter **/
+        mAdapter.setOnItemsCheckStateListener(new NewGamePlayerAdapter.OnItemsCheckStateListener() {
+            @Override
+            public void onItemCheckStateChanged(int checkedItemCounter) {
+                mStartGame = findViewById(R.id.button_start_game);
+
+                if (checkedItemCounter == 0) {
+                    mStartGame.setEnabled(false);
+                } else {
+                    mStartGame.setEnabled(true);
+                }
+            }
+        });
+    }
+
+    private void setButtons() {
+        mStartGame = findViewById(R.id.button_start_game);
+        mStartGame.setEnabled(false);
     }
 
     /**

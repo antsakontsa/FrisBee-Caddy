@@ -14,6 +14,17 @@ import java.util.ArrayList;
 
 public class NewGamePlayerAdapter extends RecyclerView.Adapter<NewGamePlayerAdapter.NewGamePlayerViewHolder> {
     private ArrayList<NewGamePlayerItem> mNewGamePlayerList;
+    private OnItemsCheckStateListener checkStateListener;
+
+    private int checkedItems = 0;
+
+    public interface OnItemsCheckStateListener {
+        void onItemCheckStateChanged(int checkedItemCounter);
+    }
+
+    public void setOnItemsCheckStateListener(OnItemsCheckStateListener checkStateListener) {
+        this.checkStateListener = checkStateListener;
+    }
 
     public static class NewGamePlayerViewHolder extends RecyclerView.ViewHolder {
         public CheckBox mCheckBox;
@@ -53,6 +64,14 @@ public class NewGamePlayerAdapter extends RecyclerView.Adapter<NewGamePlayerAdap
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 /** set object's last status **/
                 currentItem.setSelected(isChecked);
+
+                if (isChecked) {
+                    checkedItems++;
+                } else {
+                    checkedItems--;
+                }
+
+                checkStateListener.onItemCheckStateChanged(checkedItems);
             }
         });
 

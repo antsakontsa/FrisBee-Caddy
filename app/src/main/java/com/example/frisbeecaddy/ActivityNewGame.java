@@ -26,25 +26,13 @@ public class ActivityNewGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
         mNext = findViewById(R.id.button_next);
+        mNext.setEnabled(false);
 
         /** This have to be loaded from ActivityPlayers, otherwise cannot render this list when app starts **/
         ActivityPlayers.loadData(this);
         insertNames();
         buildRecyclerView();
-
-        mNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /** Get all checked names to the mCheckedBoxes Arraylist **/
-                checkCheckBoxes();
-
-                Intent intent = new Intent(ActivityNewGame.this, ActivityNewGame2.class);
-                /** Send those names with Intent **/
-                intent.putStringArrayListExtra("CHECKEDITEMS", mCheckedBoxes);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        });
+        setButtons();
     }
 
     private void checkCheckBoxes() {
@@ -77,6 +65,35 @@ public class ActivityNewGame extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemsCheckStateListener(new NewGamePlayerAdapter.OnItemsCheckStateListener() {
+            @Override
+            public void onItemCheckStateChanged(int checkedItemCounter) {
+                mNext = findViewById(R.id.button_next);
+
+                if (checkedItemCounter == 0) {
+                    mNext.setEnabled(false);
+                } else {
+                    mNext.setEnabled(true);
+                }
+            }
+        });
+    }
+
+    private void setButtons() {
+        mNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /** Get all checked names to the mCheckedBoxes Arraylist **/
+                checkCheckBoxes();
+
+                Intent intent = new Intent(ActivityNewGame.this, ActivityNewGame2.class);
+                /** Send those names with Intent **/
+                intent.putStringArrayListExtra("CHECKEDITEMS", mCheckedBoxes);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
     }
 
     /**
