@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class ActivityNewGame extends AppCompatActivity {
     private ArrayList<NewGamePlayerItem> mPlayerList;
-    private ArrayList<String> mCheckedBoxes;
+    public static ArrayList<String> mCheckedBoxes;
 
     private RecyclerView mRecyclerView;
     private NewGamePlayerAdapter mAdapter;
@@ -88,8 +88,6 @@ public class ActivityNewGame extends AppCompatActivity {
                 checkCheckBoxes();
 
                 Intent intent = new Intent(ActivityNewGame.this, ActivityNewGame2.class);
-                /** Send those names with Intent **/
-                intent.putStringArrayListExtra("CHECKEDITEMS", mCheckedBoxes);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }

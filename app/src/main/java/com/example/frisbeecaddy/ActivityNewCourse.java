@@ -262,7 +262,7 @@ public class ActivityNewCourse extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     /** Create dialog **/
-                    builder.setTitle("Naming error");
+                    builder.setTitle("Naming issue");
                     builder.setIcon(R.mipmap.ic_launcher);
                     builder.setMessage("This course name is already on a list")
 

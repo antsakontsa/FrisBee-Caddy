@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ public class ActivityNewGame2 extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private ArrayList<NewGameCourseItem> mCourseList;
-    private ArrayList<String> mNameList;
 
     private Button mStartGame;
 
@@ -31,9 +31,9 @@ public class ActivityNewGame2 extends AppCompatActivity {
         buildRecyclerView();
         setButtons();
 
-        /** Keep checked names from previous activity **/
-        mNameList = new ArrayList<>();
-        mNameList = getIntent().getStringArrayListExtra("CHECKEDITEMS");
+        /**
+         i = findViewById(R.id.textView11);
+         i.setText(ActivityNewGame.mCheckedBoxes.get(0));**/
     }
 
     private void insertNames() {
@@ -75,6 +75,21 @@ public class ActivityNewGame2 extends AppCompatActivity {
     private void setButtons() {
         mStartGame = findViewById(R.id.button_start_game);
         mStartGame.setEnabled(false);
+
+        mStartGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int i = 0; i < mCourseList.size(); i++) {
+                    if (true) {
+                        Intent intent = new Intent(ActivityNewGame2.this, ActivityGame.class);
+                        intent.putExtra("SELECTEDCOURSE", ActivityCourses.mCourseList.get(i));
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        break;
+                    }
+                }
+            }
+        });
     }
 
     /**

@@ -196,7 +196,7 @@ public class ActivityPlayers extends AppCompatActivity {
                     addItem(0);
                 } else {
                     /** Create dialog **/
-                    builder.setTitle("Naming error");
+                    builder.setTitle("Naming issue");
                     builder.setIcon(R.mipmap.ic_launcher);
                     builder.setMessage("This player name is already on a list")
 
