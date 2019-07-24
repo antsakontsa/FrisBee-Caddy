@@ -19,6 +19,10 @@ public class GameItem {
         return mText2;
     }
 
+    public void changeText2(String text) {
+        mText2 = text;
+    }
+
     public int getImageMinus() {
         return mImageMinus;
     }

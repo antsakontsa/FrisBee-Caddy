@@ -30,10 +30,6 @@ public class ActivityNewGame2 extends AppCompatActivity {
         insertNames();
         buildRecyclerView();
         setButtons();
-
-        /**
-         i = findViewById(R.id.textView11);
-         i.setText(ActivityNewGame.mCheckedBoxes.get(0));**/
     }
 
     private void insertNames() {
@@ -79,15 +75,9 @@ public class ActivityNewGame2 extends AppCompatActivity {
         mStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0; i < mCourseList.size(); i++) {
-                    if (true) {
-                        Intent intent = new Intent(ActivityNewGame2.this, ActivityGame.class);
-                        intent.putExtra("SELECTEDCOURSE", ActivityCourses.mCourseList.get(i));
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        break;
-                    }
-                }
+                Intent intent = new Intent(ActivityNewGame2.this, ActivityGame.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }

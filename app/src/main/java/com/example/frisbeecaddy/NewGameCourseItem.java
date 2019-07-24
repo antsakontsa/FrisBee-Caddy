@@ -1,6 +1,8 @@
 package com.example.frisbeecaddy;
 
-public class NewGameCourseItem {
+import java.io.Serializable;
+
+public class NewGameCourseItem implements Serializable {
 
     private boolean mRadioButton;
     private String mCourseName, mHolesTxt, mHolesNm, mParTxt, mParNm;

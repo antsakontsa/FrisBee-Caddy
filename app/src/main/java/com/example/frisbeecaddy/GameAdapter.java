@@ -14,16 +14,54 @@ import java.util.ArrayList;
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
     private ArrayList<GameItem> mGameList;
 
+    private GameAdapter.OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onMinusClick(int position);
+        void onPlusClick(int position);
+    }
+
+    public void setOnItemClickListener(GameAdapter.OnItemClickListener listener) {
+        mListener = listener;
+    }
+
     public static class GameViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextPlayer, mTextPar;
         public ImageView mImageMinus, mImagePlus;
 
-        public GameViewHolder(@NonNull View itemView) {
+        public GameViewHolder(@NonNull View itemView, final GameAdapter.OnItemClickListener listener) {
             super(itemView);
             mTextPlayer = itemView.findViewById(R.id.gameNameRecycler);
             mTextPar = itemView.findViewById(R.id.gameParNumberRecycler);
             mImageMinus = itemView.findViewById(R.id.game_minus_btn);
             mImagePlus = itemView.findViewById(R.id.game_plus_btn);
+
+            mImageMinus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onMinusClick(position);
+                        }
+                    }
+                }
+            });
+
+            mImagePlus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onPlusClick(position);
+                        }
+                    }
+                }
+            });
+
         }
     }
 
@@ -35,7 +73,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     @Override
     public GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_item, parent, false);
-        GameViewHolder evh = new GameViewHolder(v);
+        GameViewHolder evh = new GameViewHolder(v, mListener);
         return evh;
     }
 

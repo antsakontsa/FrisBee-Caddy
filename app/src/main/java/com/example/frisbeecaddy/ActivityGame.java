@@ -10,6 +10,8 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 public class ActivityGame extends AppCompatActivity {
+    private ArrayList<GameItem> mGameItemList;
+
     private RecyclerView mRecyclerView;
     private GameAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -23,19 +25,46 @@ public class ActivityGame extends AppCompatActivity {
     }
 
     private void buildRecyclerView() {
-        ArrayList<GameItem> gameList = new ArrayList<>();
+        mGameItemList = new ArrayList<>();
 
-        gameList.add(new GameItem("Antti", "3", R.drawable.ic_minus, R.drawable.ic_plus));
-        gameList.add(new GameItem("Emi", "3", R.drawable.ic_minus, R.drawable.ic_plus));
-        gameList.add(new GameItem("Riina", "3", R.drawable.ic_minus, R.drawable.ic_plus));
+        /** Set selected names into the recyclerview **/
+        for (int i = 0; i < ActivityNewGame.mCheckedBoxes.size(); i++) {
+            mGameItemList.add(new GameItem(ActivityNewGame.mCheckedBoxes.get(i), "3", R.drawable.ic_minus, R.drawable.ic_plus));
+        }
 
         mRecyclerView = findViewById(R.id.gameRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new GameAdapter(gameList);
+        mAdapter = new GameAdapter(mGameItemList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {
+            @Override
+            public void onMinusClick(int position) {
+                String parNum = mGameItemList.get(position).getText2();
+                int intParNm = Integer.valueOf(parNum);
+
+                if (intParNm != 1) {
+                    intParNm -= 1;
+                    mGameItemList.get(position).changeText2(Integer.toString(intParNm));
+                    mAdapter.notifyItemChanged(position);
+                }
+            }
+
+            @Override
+            public void onPlusClick(int position) {
+                String parNum = mGameItemList.get(position).getText2();
+                int intParNm = Integer.valueOf(parNum);
+
+                if (intParNm != 99) {
+                    intParNm += 1;
+                    mGameItemList.get(position).changeText2(Integer.toString(intParNm));
+                    mAdapter.notifyItemChanged(position);
+                }
+            }
+        });
     }
 
     /**
