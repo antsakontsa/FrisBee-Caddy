@@ -16,11 +16,15 @@ public class NewGameCourseAdapter extends RecyclerView.Adapter<NewGameCourseAdap
     private ArrayList<NewGameCourseItem> mCourseList;
     private NewGamePlayerAdapter.OnItemsCheckStateListener checkStateListener;
 
-    private int checkedItems = 0;
-
     public void setOnItemsCheckStateListener(NewGamePlayerAdapter.OnItemsCheckStateListener checkStateListener) {
         this.checkStateListener = checkStateListener;
     }
+
+    public NewGameCourseItem getSelectedItem() {
+        return mCourseList.get(selectedPosition);
+    }
+
+    private int checkedItems = 0;
 
     private int selectedPosition = -1; /** No selection by default **/
 
@@ -63,16 +67,9 @@ public class NewGameCourseAdapter extends RecyclerView.Adapter<NewGameCourseAdap
         holder.mRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                notifyItemChanged(selectedPosition);
                 selectedPosition = holder.getAdapterPosition();
-
-                /** This part considers checking for radio buttons (checked or not) **/
-                if (selectedPosition == position) {
-                    holder.mRadioButton.setChecked(true);
-                    notifyDataSetChanged();
-                } else {
-                    holder.mRadioButton.setChecked(false);
-                    notifyDataSetChanged();
-                }
+                notifyItemChanged(selectedPosition);
 
                 /** This part considers checking for "start game" buttons enabling **/
                 if (isChecked) {

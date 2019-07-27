@@ -18,12 +18,12 @@ public class NewGamePlayerAdapter extends RecyclerView.Adapter<NewGamePlayerAdap
 
     private int checkedItems = 0;
 
-    public interface OnItemsCheckStateListener {
-        void onItemCheckStateChanged(int checkedItemCounter);
-    }
-
     public void setOnItemsCheckStateListener(OnItemsCheckStateListener checkStateListener) {
         this.checkStateListener = checkStateListener;
+    }
+
+    public interface OnItemsCheckStateListener {
+        void onItemCheckStateChanged(int checkedItemCounter);
     }
 
     public static class NewGamePlayerViewHolder extends RecyclerView.ViewHolder {

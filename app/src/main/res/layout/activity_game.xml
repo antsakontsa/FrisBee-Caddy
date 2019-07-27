@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/gameHoleNumber"
+        android:id="@+id/gameHoleTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_23sdp"
@@ -35,6 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/gameHoleNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_23sdp"
@@ -43,13 +44,13 @@
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/_18sdp"
         app:layout_constraintStart_toEndOf="@+id/gameCourseName"
-        app:layout_constraintTop_toBottomOf="@+id/gameHoleNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/gameHoleTxt" />
 
     <ImageView
         android:id="@+id/previous"
         android:layout_width="@dimen/_39sdp"
-        android:layout_height="@dimen/_37sdp"
-        android:layout_marginTop="@dimen/_17sdp"
+        android:layout_height="@dimen/_42sdp"
+        android:layout_marginTop="@dimen/_14sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:layout_marginRight="@dimen/_8sdp"
         android:background="@drawable/ic_arrow_left"
@@ -59,10 +60,10 @@
     <ImageView
         android:id="@+id/next"
         android:layout_width="@dimen/_39sdp"
-        android:layout_height="@dimen/_37sdp"
-        android:layout_marginTop="@dimen/_17sdp"
-        android:layout_marginEnd="@dimen/_11sdp"
-        android:layout_marginRight="@dimen/_11sdp"
+        android:layout_height="@dimen/_42sdp"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_8sdp"
         android:background="@drawable/ic_arrow_right"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -81,13 +82,26 @@
         app:layout_constraintTop_toBottomOf="@+id/gameCourseName" />
 
     <TextView
+        android:id="@+id/gameParTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_38sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:layout_marginRight="@dimen/_4sdp"
+        android:text="Par"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/_23sdp"
+        app:layout_constraintEnd_toStartOf="@+id/gameParNumber"
+        app:layout_constraintTop_toBottomOf="@+id/gameCourseName" />
+
+    <TextView
         android:id="@+id/gameParNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_38sdp"
         android:layout_marginEnd="@dimen/_140sdp"
         android:layout_marginRight="@dimen/_140sdp"
-        android:text="Par 3"
+        android:text="3"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/_23sdp"
         app:layout_constraintEnd_toEndOf="parent"

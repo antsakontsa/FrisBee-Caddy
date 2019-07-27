@@ -22,9 +22,11 @@ import java.util.Comparator;
 
 public class ActivityCourses extends AppCompatActivity {
     public static ArrayList<CoursesItem> mCourseList;
+
     private RecyclerView mRecyclerView;
     private CoursesAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
     private Button add_course;
 
     @Override

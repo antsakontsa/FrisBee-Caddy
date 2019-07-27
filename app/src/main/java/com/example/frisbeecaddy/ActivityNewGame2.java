@@ -16,7 +16,8 @@ public class ActivityNewGame2 extends AppCompatActivity {
     private NewGameCourseAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private ArrayList<NewGameCourseItem> mCourseList;
+    public static ArrayList<NewGameCourseItem> mCourseList;
+    public static ArrayList<String> mCourseName2;
 
     private Button mStartGame;
 
@@ -75,7 +76,11 @@ public class ActivityNewGame2 extends AppCompatActivity {
         mStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                NewGameCourseItem item = mAdapter.getSelectedItem();
                 Intent intent = new Intent(ActivityNewGame2.this, ActivityGame.class);
+                /** Also intent selected items: course name and hole number **/
+                intent.putExtra("COURSENAME", item.getCourseName());
+                intent.putExtra("HOLESNM", item.getHolesNm());
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }

@@ -1,5 +1,6 @@
 package com.example.frisbeecaddy;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     public void setOnItemClickListener(GameAdapter.OnItemClickListener listener) {
         mListener = listener;
     }
+
+    public Context context;
 
     public static class GameViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextPlayer, mTextPar;
@@ -61,7 +64,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
                     }
                 }
             });
-
         }
     }
 
@@ -83,6 +85,18 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
         holder.mTextPlayer.setText(currentItem.getText1());
         holder.mTextPar.setText(currentItem.getText2());
+
+        /** If persons par number is smaller than course par number, then change persons par number background to blue **/
+        if (Integer.parseInt(holder.mTextPar.getText().toString()) == 1) {
+            holder.mTextPar.setBackgroundResource(R.drawable.border_box_yellow);
+        } else if (Integer.parseInt(holder.mTextPar.getText().toString()) < 3) {
+            holder.mTextPar.setBackgroundResource(R.drawable.border_box_blue);
+        } else if (Integer.parseInt(holder.mTextPar.getText().toString()) > 3) {
+            holder.mTextPar.setBackgroundResource(R.drawable.border_box_red);
+        } else {
+            holder.mTextPar.setBackgroundResource(R.drawable.border_box_green);
+        }
+
         holder.mImageMinus.setImageResource(currentItem.getImageMinus());
         holder.mImagePlus.setImageResource(currentItem.getImagePlus());
     }

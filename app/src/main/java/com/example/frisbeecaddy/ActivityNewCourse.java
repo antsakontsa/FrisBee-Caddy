@@ -77,7 +77,7 @@ public class ActivityNewCourse extends AppCompatActivity {
                 if (intString != 2) {
                     intString -= 1;
                     mNewCourseList.get(position).changeText2(Integer.toString(intString));
-                    mAdapter.notifyItemChanged(position);
+                    mAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -89,7 +89,7 @@ public class ActivityNewCourse extends AppCompatActivity {
                 if (intString != 5) {
                     intString += 1;
                     mNewCourseList.get(position).changeText2(Integer.toString(intString));
-                    mAdapter.notifyItemChanged(position);
+                    mAdapter.notifyDataSetChanged();
                 }
             }
         });
