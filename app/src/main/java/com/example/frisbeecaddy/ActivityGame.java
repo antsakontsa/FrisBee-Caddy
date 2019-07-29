@@ -44,10 +44,14 @@ public class ActivityGame extends AppCompatActivity {
         mBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mHoleNm = findViewById(R.id.gameHoleNumber);
+
                 if (holeCounter > 1) {
-                    Intent intent = getIntent();
-                    mHoleNm = findViewById(R.id.gameHoleNumber);
+                    mForwardArrow.setImageResource(R.drawable.ic_arrow_right);
+
                     holeCounter--;
+
+                    Intent intent = getIntent();
                     mHoleNm.setText(holeCounter + "/" + intent.getStringExtra("HOLESNM"));
                 }
             }
@@ -56,12 +60,22 @@ public class ActivityGame extends AppCompatActivity {
         mForwardArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mHoleNm = findViewById(R.id.gameHoleNumber);
+
                 Intent intent = getIntent();
                 int holesNm = Integer.parseInt(intent.getStringExtra("HOLESNM"));
 
-                if (holeCounter < holesNm) {
-                    mHoleNm = findViewById(R.id.gameHoleNumber);
+                if (holeCounter == holesNm - 1) {
+                    mForwardArrow.setImageResource(R.drawable.ic_finish);
+
                     holeCounter++;
+
+                    mHoleNm.setText(holeCounter + "/" + intent.getStringExtra("HOLESNM"));
+                } else if (holeCounter < holesNm) {
+                    mForwardArrow.setImageResource(R.drawable.ic_arrow_right);
+
+                    holeCounter++;
+
                     mHoleNm.setText(holeCounter + "/" + intent.getStringExtra("HOLESNM"));
                 }
             }

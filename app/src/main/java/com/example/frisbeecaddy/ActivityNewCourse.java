@@ -86,7 +86,7 @@ public class ActivityNewCourse extends AppCompatActivity {
                 String string = mNewCourseList.get(position).getText2();
                 int intString = Integer.valueOf(string);
 
-                if (intString != 5) {
+                if (intString != 6) {
                     intString += 1;
                     mNewCourseList.get(position).changeText2(Integer.toString(intString));
                     mAdapter.notifyDataSetChanged();

@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_8sdp"
-    android:outlineSpotShadowColor="@color/colorAccent"
-    app:cardCornerRadius="0dp">
+    android:layout_marginTop="@dimen/_5sdp"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,6 +16,12 @@
             android:id="@+id/course_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_toStartOf="@+id/img_delete"
+            android:layout_toLeftOf="@+id/img_delete"
             android:text="Mukkula Etu9"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_19sdp" />
@@ -77,9 +83,10 @@
             android:id="@+id/img_delete"
             android:layout_width="@dimen/_27sdp"
             android:layout_height="@dimen/_27sdp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="13dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
             android:background="@drawable/ic_delete" />

@@ -16,10 +16,6 @@ public class NewGameCourseItem implements Serializable {
         mParNm = parNm;
     }
 
-    public boolean getRadioButton() {
-        return mRadioButton;
-    }
-
     public String getCourseName() {
         return mCourseName;
     }
@@ -38,9 +34,5 @@ public class NewGameCourseItem implements Serializable {
 
     public String getParNm() {
         return mParNm;
-    }
-
-    public void setSelected(boolean isSelected) {
-        mRadioButton = isSelected;
     }
 }

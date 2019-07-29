@@ -67,9 +67,15 @@ public class NewGameCourseAdapter extends RecyclerView.Adapter<NewGameCourseAdap
         holder.mRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                /** This is for previous selection to go off **/
                 notifyItemChanged(selectedPosition);
+
+                /** New selection **/
                 selectedPosition = holder.getAdapterPosition();
                 notifyItemChanged(selectedPosition);
+
+                /** This get rid off the flash which comes from notifyItemChanged() **/
+                notifyDataSetChanged();
 
                 /** This part considers checking for "start game" buttons enabling **/
                 if (isChecked) {
