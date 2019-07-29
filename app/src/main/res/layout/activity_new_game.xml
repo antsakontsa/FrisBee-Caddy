@@ -17,7 +17,7 @@
         android:layout_marginTop="@dimen/_23sdp"
         android:text="Choose players:"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/_23sdp"
+        android:textSize="@dimen/_21sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,7 +47,7 @@
         android:background="#16a11d"
         android:padding="@dimen/_9sdp"
         android:text="next"
-        android:textSize="@dimen/_23sdp"
+        android:textSize="@dimen/_21sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

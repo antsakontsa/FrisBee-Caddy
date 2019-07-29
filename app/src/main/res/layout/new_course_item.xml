@@ -24,7 +24,7 @@
             android:text="1"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_23sdp" />
+            android:textSize="@dimen/_21sdp" />
 
         <TextView
             android:id="@+id/par_number"
@@ -40,7 +40,7 @@
             android:text="3"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_23sdp" />
+            android:textSize="@dimen/_21sdp" />
 
         <ImageView
             android:id="@+id/item_minus_btn"

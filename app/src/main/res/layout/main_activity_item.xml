@@ -22,7 +22,7 @@
             android:text="NEW GAME"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_23sdp" />
+            android:textSize="@dimen/_21sdp" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

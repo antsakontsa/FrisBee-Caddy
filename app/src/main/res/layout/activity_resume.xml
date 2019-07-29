@@ -16,7 +16,7 @@
         android:layout_marginTop="@dimen/_23sdp"
         android:text="Played games:"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/_23sdp"
+        android:textSize="@dimen/_21sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

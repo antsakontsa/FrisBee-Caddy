@@ -30,11 +30,11 @@
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_toEndOf="@+id/name_checkbox"
             android:layout_toRightOf="@+id/name_checkbox"
-            android:paddingTop="@dimen/_2sdp"
+            android:paddingTop="@dimen/_4sdp"
             android:paddingBottom="@dimen/_8sdp"
             android:text="Antti"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_22sdp" />
+            android:textSize="@dimen/_21sdp" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
