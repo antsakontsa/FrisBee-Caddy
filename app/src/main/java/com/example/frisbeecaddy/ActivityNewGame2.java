@@ -17,7 +17,6 @@ public class ActivityNewGame2 extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
     public static ArrayList<NewGameCourseItem> mCourseList;
-    public static ArrayList<String> mCourseName2;
 
     private Button mStartGame;
 
@@ -40,7 +39,7 @@ public class ActivityNewGame2 extends AppCompatActivity {
             mCourseList = new ArrayList<>();
 
             for (int i = 0; i < ActivityCourses.mCourseList.size(); i++) {
-                mCourseList.add(new NewGameCourseItem(false, ActivityCourses.mCourseList.get(i).getCourseName(), "Holes:", ActivityCourses.mCourseList.get(i).getHolesNm(), "Par:", ActivityCourses.mCourseList.get(i).getParNm()));
+                mCourseList.add(new NewGameCourseItem(ActivityCourses.mCourseList.get(i).getParNumbersIndividually(),false, ActivityCourses.mCourseList.get(i).getCourseName(), "Holes:", ActivityCourses.mCourseList.get(i).getHolesNm(), "Par:", ActivityCourses.mCourseList.get(i).getParNm()));
             }
         }
     }
@@ -76,11 +75,16 @@ public class ActivityNewGame2 extends AppCompatActivity {
         mStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /** Start intent to ActivityGame **/
                 NewGameCourseItem item = mAdapter.getSelectedItem();
                 Intent intent = new Intent(ActivityNewGame2.this, ActivityGame.class);
-                /** Also intent selected items: course name and hole number **/
+
+                /** Also intent selected items: course name and hole number and all par numbers **/
                 intent.putExtra("COURSENAME", item.getCourseName());
                 intent.putExtra("HOLESNM", item.getHolesNm());
+                intent.putStringArrayListExtra("PARNUMBERSINDIVIDUALLY", item.getParNumbersIndividually());
+
+                /** Intent **/
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }

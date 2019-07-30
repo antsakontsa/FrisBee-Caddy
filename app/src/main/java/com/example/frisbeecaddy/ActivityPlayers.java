@@ -110,7 +110,7 @@ public class ActivityPlayers extends AppCompatActivity {
     private void removeItem(final int position) {
         /** Create dialog which ask if user is sure about delete name from list **/
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete Player");
+        builder.setTitle("Delete");
         builder.setIcon(R.mipmap.ic_launcher);
         builder.setMessage("Do you want to delete player: \n\n\"" + mNameList.get(position).getText1() + "\"?")
                 .setCancelable(false)

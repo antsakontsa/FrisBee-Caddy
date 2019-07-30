@@ -67,7 +67,7 @@
 
         <TextView
             android:id="@+id/par_nm"
-            android:layout_width="@dimen/_141sdp"
+            android:layout_width="@dimen/_131sdp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/course_name"
             android:layout_alignParentEnd="true"

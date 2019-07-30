@@ -84,7 +84,7 @@
 
         <TextView
             android:id="@+id/par_nm2"
-            android:layout_width="@dimen/_111sdp"
+            android:layout_width="@dimen/_101sdp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/course_name2"
             android:layout_alignParentEnd="true"

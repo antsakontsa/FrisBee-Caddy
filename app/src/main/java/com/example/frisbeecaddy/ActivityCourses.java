@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.muddzdev.styleabletoast.StyleableToast;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +24,7 @@ import java.util.Comparator;
 
 public class ActivityCourses extends AppCompatActivity {
     public static ArrayList<CoursesItem> mCourseList;
+    private ArrayList<String> mAllParNumbersSeparately;
 
     private RecyclerView mRecyclerView;
     private CoursesAdapter mAdapter;
@@ -48,20 +51,21 @@ public class ActivityCourses extends AppCompatActivity {
             /** Store new course items in arraylist **/
             ArrayList<NewCourseItem> itemArray = (ArrayList<NewCourseItem>) getIntent().getSerializableExtra("COURSELIST");
 
+            mAllParNumbersSeparately = new ArrayList<>();
             /** Count par number for item **/
             int parCount = 0;
             for (int i = 0; i < itemArray.size(); i++) {
                 parCount += Integer.parseInt(itemArray.get(i).getText2());
+
+                /** Take every par number and insert them into the ArrayList **/
+                mAllParNumbersSeparately.add(itemArray.get(i).getText2());
             }
 
-            /** Receive primitive data from and make new item with that information **/
-            mCourseList.add(new CoursesItem(getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"), "Par:", Integer.toString(parCount), R.drawable.ic_delete));
+            /** Receive the data and make new item with that information **/
+            mCourseList.add(new CoursesItem(mAllParNumbersSeparately, getIntent().getStringExtra("COURSENAME"), "Holes:", getIntent().getStringExtra("HOLENUMBER"), "Par:", Integer.toString(parCount), R.drawable.ic_delete));
 
             /** Give notification for user that course saved successfully **/
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Course: \"" + getIntent().getStringExtra("COURSENAME") + "\" saved successfully", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
-            toast.show();
+            StyleableToast.makeText(this, "Course: \"" + getIntent().getStringExtra("COURSENAME") + "\" saved successfully", R.style.saveToast).show();
 
             /** When item added to the list go back to main menu **/
             Intent intent = new Intent(ActivityCourses.this, MainActivity.class);
@@ -128,7 +132,7 @@ public class ActivityCourses extends AppCompatActivity {
     private void removeItem(final int position) {
         /** Create dialog which ask if user is sure about delete name from list **/
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete Course");
+        builder.setTitle("Delete");
         builder.setIcon(R.mipmap.ic_launcher);
         builder.setMessage("Do you want to delete course: \n\n\"" + mCourseList.get(position).getCourseName() + "\"?")
                 .setCancelable(false)

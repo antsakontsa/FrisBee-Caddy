@@ -23,23 +23,28 @@ public class ActivityGame extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private TextView mCourseName, mHoleNm;
+    public static TextView mParNm;
     private ImageView mBackArrow, mForwardArrow;
 
-    public static int holeCounter = 1;
+    private int holeCounter = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        setButtons();
         setLayoutData();
+        setButtons();
         buildRecyclerView();
     }
 
     private void setButtons() {
         mBackArrow = findViewById(R.id.previous);
         mForwardArrow = findViewById(R.id.next);
+
+        Intent intent = getIntent();
+        mParNm = findViewById(R.id.gameParNumber);
+        mParNm.setText(intent.getStringArrayListExtra("PARNUMBERSINDIVIDUALLY").get(holeCounter - 1));
 
         mBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +58,9 @@ public class ActivityGame extends AppCompatActivity {
 
                     Intent intent = getIntent();
                     mHoleNm.setText(holeCounter + "/" + intent.getStringExtra("HOLESNM"));
+
+                    mParNm = findViewById(R.id.gameParNumber);
+                    mParNm.setText(intent.getStringArrayListExtra("PARNUMBERSINDIVIDUALLY").get(holeCounter - 1));
                 }
             }
         });
@@ -71,12 +79,18 @@ public class ActivityGame extends AppCompatActivity {
                     holeCounter++;
 
                     mHoleNm.setText(holeCounter + "/" + intent.getStringExtra("HOLESNM"));
+
+                    mParNm = findViewById(R.id.gameParNumber);
+                    mParNm.setText(intent.getStringArrayListExtra("PARNUMBERSINDIVIDUALLY").get(holeCounter - 1));
                 } else if (holeCounter < holesNm) {
                     mForwardArrow.setImageResource(R.drawable.ic_arrow_right);
 
                     holeCounter++;
 
                     mHoleNm.setText(holeCounter + "/" + intent.getStringExtra("HOLESNM"));
+
+                    mParNm = findViewById(R.id.gameParNumber);
+                    mParNm.setText(intent.getStringArrayListExtra("PARNUMBERSINDIVIDUALLY").get(holeCounter - 1));
                 }
             }
         });
@@ -96,7 +110,8 @@ public class ActivityGame extends AppCompatActivity {
 
         /** Set selected names into the recyclerview **/
         for (int i = 0; i < ActivityNewGame.mCheckedBoxes.size(); i++) {
-            mGameItemList.add(new GameItem(ActivityNewGame.mCheckedBoxes.get(i), "3", R.drawable.ic_minus, R.drawable.ic_plus));
+            mParNm = findViewById(R.id.gameParNumber);
+            mGameItemList.add(new GameItem(ActivityNewGame.mCheckedBoxes.get(i), mParNm.getText().toString(), R.drawable.ic_minus, R.drawable.ic_plus));
         }
 
         mRecyclerView = findViewById(R.id.gameRecyclerView);

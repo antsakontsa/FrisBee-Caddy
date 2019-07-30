@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     /** If courselist and namelist are both empty **/
                     if (ActivityCourses.mCourseList.isEmpty() && ActivityPlayers.mNameList.isEmpty()) {
                         /** Create dialog **/
-                        builder.setTitle("Addings");
+                        builder.setTitle("Add");
                         builder.setIcon(R.mipmap.ic_launcher);
                         builder.setMessage("You need to add at least (1):\n\n - Course\n - Player")
 
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         /** If only courselist is empty **/
                     } else if (ActivityCourses.mCourseList.isEmpty() && !ActivityPlayers.mNameList.isEmpty()) {
                         /** Create dialog **/
-                        builder.setTitle("Addings");
+                        builder.setTitle("Add");
                         builder.setIcon(R.mipmap.ic_launcher);
                         builder.setMessage("You still need to add at least (1):\n\n - Course")
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                         /** If only playerlist is empty **/
                     } else if (!ActivityCourses.mCourseList.isEmpty() && ActivityPlayers.mNameList.isEmpty()) {
                         /** Create dialog **/
-                        builder.setTitle("Addings");
+                        builder.setTitle("Add");
                         builder.setIcon(R.mipmap.ic_launcher);
                         builder.setMessage("You still need to add at least (1):\n\n - Player")
 

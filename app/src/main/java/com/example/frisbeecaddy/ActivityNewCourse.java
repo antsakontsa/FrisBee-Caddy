@@ -269,11 +269,11 @@ public class ActivityNewCourse extends AppCompatActivity {
                             .setCancelable(false)
 
                             .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
-                                }
-                            });
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
 
                     /** Build Dialog **/
                     AlertDialog alert = builder.create();

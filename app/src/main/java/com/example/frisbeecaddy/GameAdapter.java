@@ -89,11 +89,11 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         /** If persons par number is smaller than course par number, then change persons par number background to blue **/
         if (Integer.parseInt(holder.mTextPar.getText().toString()) == 1) {
             holder.mTextPar.setBackgroundResource(R.drawable.border_box_yellow);
-        } else if (Integer.parseInt(holder.mTextPar.getText().toString()) < 3) {
+        } else if (Integer.parseInt(holder.mTextPar.getText().toString()) < Integer.parseInt(ActivityGame.mParNm.getText().toString())) {
             holder.mTextPar.setBackgroundResource(R.drawable.border_box_blue);
-        } else if (Integer.parseInt(holder.mTextPar.getText().toString()) > 3) {
+        } else if (Integer.parseInt(holder.mTextPar.getText().toString()) > Integer.parseInt(ActivityGame.mParNm.getText().toString())) {
             holder.mTextPar.setBackgroundResource(R.drawable.border_box_red);
-        } else {
+        } else if (Integer.parseInt(holder.mTextPar.getText().toString()) == Integer.parseInt(ActivityGame.mParNm.getText().toString())) {
             holder.mTextPar.setBackgroundResource(R.drawable.border_box_green);
         }
 
