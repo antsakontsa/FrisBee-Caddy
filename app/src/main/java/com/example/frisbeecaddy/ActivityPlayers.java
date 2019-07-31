@@ -12,12 +12,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -198,7 +196,7 @@ public class ActivityPlayers extends AppCompatActivity {
                     /** Create dialog **/
                     builder.setTitle("Naming issue");
                     builder.setIcon(R.mipmap.ic_launcher);
-                    builder.setMessage("This player name is already on a list")
+                    builder.setMessage("This player is already on a list")
 
                             .setCancelable(false)
 

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_5sdp"
     app:cardCornerRadius="0dp"
     app:cardElevation="0dp">
 
@@ -12,12 +11,20 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignTop="@id/nameView"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:background="@color/colorAccent" />
+
         <TextView
             android:id="@+id/nameView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_7sdp"
+            android:paddingBottom="@dimen/_8sdp"
             android:text="Antti"
-            android:paddingBottom="@dimen/_6sdp"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/_21sdp" />
 
@@ -27,16 +34,11 @@
             android:layout_height="@dimen/_27sdp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="@dimen/_4sdp"
             android:background="@drawable/ic_delete" />
-
-        <View
-            android:layout_alignBottom="@id/nameView"
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/colorPrimary" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

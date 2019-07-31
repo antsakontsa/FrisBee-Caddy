@@ -264,7 +264,7 @@ public class ActivityNewCourse extends AppCompatActivity {
                     /** Create dialog **/
                     builder.setTitle("Naming issue");
                     builder.setIcon(R.mipmap.ic_launcher);
-                    builder.setMessage("This course name is already on a list")
+                    builder.setMessage("This course is already on a list")
 
                             .setCancelable(false)
 
