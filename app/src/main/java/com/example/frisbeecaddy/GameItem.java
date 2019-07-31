@@ -1,14 +1,15 @@
 package com.example.frisbeecaddy;
 
 public class GameItem {
-    private String mText1, mText2;
+    private String mText1, mText2, mText3;
     private int mImageMinus, mImagePlus;
 
-    public GameItem(String text1, String text2, int imageMinus, int imagePlus) {
+    public GameItem(String text1, String text2, int imageMinus, int imagePlus, String text3) {
         mText1 = text1;
         mText2 = text2;
         mImageMinus = imageMinus;
         mImagePlus = imagePlus;
+        mText3 = text3;
     }
 
     public String getText1() {
@@ -29,5 +30,9 @@ public class GameItem {
 
     public int getImagePlus() {
         return mImagePlus;
+    }
+
+    public String getText3() {
+        return mText3;
     }
 }

@@ -61,6 +61,8 @@ public class ActivityGame extends AppCompatActivity {
 
                     mParNm = findViewById(R.id.gameParNumber);
                     mParNm.setText(intent.getStringArrayListExtra("PARNUMBERSINDIVIDUALLY").get(holeCounter - 1));
+
+                    updateGameArrayList(Integer.parseInt(mParNm.getText().toString()));
                 }
             }
         });
@@ -82,6 +84,8 @@ public class ActivityGame extends AppCompatActivity {
 
                     mParNm = findViewById(R.id.gameParNumber);
                     mParNm.setText(intent.getStringArrayListExtra("PARNUMBERSINDIVIDUALLY").get(holeCounter - 1));
+
+                    updateGameArrayList(Integer.parseInt(mParNm.getText().toString()));
                 } else if (holeCounter < holesNm) {
                     mForwardArrow.setImageResource(R.drawable.ic_arrow_right);
 
@@ -91,9 +95,18 @@ public class ActivityGame extends AppCompatActivity {
 
                     mParNm = findViewById(R.id.gameParNumber);
                     mParNm.setText(intent.getStringArrayListExtra("PARNUMBERSINDIVIDUALLY").get(holeCounter - 1));
+
+                    updateGameArrayList(Integer.parseInt(mParNm.getText().toString()));
                 }
             }
         });
+    }
+
+    private void updateGameArrayList(int parVal) {
+        for(GameItem model : mGameItemList) {
+            model.changeText2(Integer.toString(parVal));
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     private void setLayoutData() {
