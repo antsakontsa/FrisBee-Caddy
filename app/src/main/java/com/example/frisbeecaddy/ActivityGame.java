@@ -27,6 +27,7 @@ public class ActivityGame extends AppCompatActivity {
     private ImageView mBackArrow, mForwardArrow;
 
     private int holeCounter = 1;
+    private int totalCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +104,7 @@ public class ActivityGame extends AppCompatActivity {
     }
 
     private void updateGameArrayList(int parVal) {
-        for(GameItem model : mGameItemList) {
+        for (GameItem model : mGameItemList) {
             model.changeText2(Integer.toString(parVal));
             mAdapter.notifyDataSetChanged();
         }
@@ -124,7 +125,8 @@ public class ActivityGame extends AppCompatActivity {
         /** Set selected names into the recyclerview **/
         for (int i = 0; i < ActivityNewGame.mCheckedBoxes.size(); i++) {
             mParNm = findViewById(R.id.gameParNumber);
-            mGameItemList.add(new GameItem(ActivityNewGame.mCheckedBoxes.get(i), mParNm.getText().toString(), R.drawable.ic_minus, R.drawable.ic_plus));
+
+            mGameItemList.add(new GameItem(ActivityNewGame.mCheckedBoxes.get(i), mParNm.getText().toString(), R.drawable.ic_minus, R.drawable.ic_plus, "TTL :", "0"));
         }
 
         mRecyclerView = findViewById(R.id.gameRecyclerView);
@@ -144,9 +146,17 @@ public class ActivityGame extends AppCompatActivity {
 
                 if (intParNm != 1) {
                     intParNm -= 1;
+                    totalCounter -= 1;
+
+                    String totalCounter = ((TextView) mRecyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.game_total_number)).getText().toString();
+
+                    int intTotalCounter = Integer.parseInt(totalCounter);
+
                     mGameItemList.get(position).changeText2(Integer.toString(intParNm));
+                    mGameItemList.get(position).changeText4(Integer.toString(intTotalCounter - 1));
                     mAdapter.notifyDataSetChanged();
                 }
+
             }
 
             @Override
@@ -156,7 +166,14 @@ public class ActivityGame extends AppCompatActivity {
 
                 if (intParNm != 99) {
                     intParNm += 1;
+                    totalCounter += 1;
+
+                    String totalCounter = ((TextView) mRecyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.game_total_number)).getText().toString();
+
+                    int intTotalCounter = Integer.parseInt(totalCounter);
+
                     mGameItemList.get(position).changeText2(Integer.toString(intParNm));
+                    mGameItemList.get(position).changeText4(Integer.toString(intTotalCounter + 1));
                     mAdapter.notifyDataSetChanged();
                 }
             }

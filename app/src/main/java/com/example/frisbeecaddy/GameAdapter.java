@@ -29,7 +29,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     public Context context;
 
     public static class GameViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextPlayer, mTextPar, mNumberTotal;
+        public TextView mTextPlayer, mTextPar, mTotalTxt, mNumberTotal;
         public ImageView mImageMinus, mImagePlus;
 
         public GameViewHolder(@NonNull View itemView, final GameAdapter.OnItemClickListener listener) {
@@ -38,6 +38,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
             mTextPar = itemView.findViewById(R.id.gameParNumberRecycler);
             mImageMinus = itemView.findViewById(R.id.game_minus_btn);
             mImagePlus = itemView.findViewById(R.id.game_plus_btn);
+            mTotalTxt = itemView.findViewById(R.id.game_total_txt);
             mNumberTotal = itemView.findViewById(R.id.game_total_number);
 
             mImageMinus.setOnClickListener(new View.OnClickListener() {
@@ -81,8 +82,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GameViewHolder holder, int position) {
-        GameItem currentItem = mGameList.get(position);
+    public void onBindViewHolder(@NonNull final GameViewHolder holder, int position) {
+        final GameItem currentItem = mGameList.get(position);
 
         holder.mTextPlayer.setText(currentItem.getText1());
         holder.mTextPar.setText(currentItem.getText2());
@@ -99,6 +100,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
         holder.mImageMinus.setImageResource(currentItem.getImageMinus());
         holder.mImagePlus.setImageResource(currentItem.getImagePlus());
+        holder.mTotalTxt.setText(currentItem.getText3());
+        holder.mNumberTotal.setText(currentItem.getText4());
     }
 
     @Override

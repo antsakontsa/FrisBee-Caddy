@@ -60,8 +60,8 @@
         android:layout_width="@dimen/_39sdp"
         android:layout_height="@dimen/_42sdp"
         android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
         android:src="@drawable/ic_arrow_right"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -75,7 +75,7 @@
         android:layout_marginTop="@dimen/_38sdp"
         android:text="Player:"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/_21sdp"
+        android:textSize="@dimen/_19sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameCourseName" />
 
@@ -88,20 +88,20 @@
         android:layout_marginRight="@dimen/_4sdp"
         android:text="Par:"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/_21sdp"
+        android:textSize="@dimen/_19sdp"
         app:layout_constraintEnd_toStartOf="@+id/gameParNumber"
         app:layout_constraintTop_toBottomOf="@+id/gameCourseName" />
 
     <TextView
         android:id="@+id/gameParNumber"
-        android:layout_width="wrap_content"
+        android:layout_width="12dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_38sdp"
-        android:layout_marginEnd="@dimen/_104sdp"
-        android:layout_marginRight="@dimen/_104sdp"
+        android:layout_marginEnd="@dimen/_112sdp"
+        android:layout_marginRight="@dimen/_112sdp"
         android:text="5"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/_21sdp"
+        android:textSize="@dimen/_19sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameCourseName" />
 
@@ -109,10 +109,10 @@
         android:id="@+id/gameRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_7sdp"
-        android:layout_marginLeft="@dimen/_7sdp"
-        android:layout_marginEnd="@dimen/_4sdp"
-        android:layout_marginRight="@dimen/_4sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_7sdp"
+        android:layout_marginRight="@dimen/_7sdp"
         android:layout_marginBottom="@dimen/_12sdp"
         android:scrollbarFadeDuration="1500"
         android:scrollbarSize="@dimen/_2sdp"

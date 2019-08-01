@@ -22,9 +22,10 @@
             android:layout_marginLeft="@dimen/_4sdp"
             android:layout_marginEnd="@dimen/_4sdp"
             android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
             android:text="Antti"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/_21sdp" />
+            android:textSize="@dimen/_19sdp" />
 
         <TextView
             android:id="@+id/gameParNumberRecycler"
@@ -76,10 +77,10 @@
             android:layout_marginLeft="@dimen/_4sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_8sdp"
-            android:text="TTL :"
             android:layout_marginBottom="@dimen/_5sdp"
+            android:text="TTL :"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_16sdp" />
+            android:textSize="@dimen/_15sdp" />
 
         <TextView
             android:id="@+id/game_total_number"
@@ -88,9 +89,9 @@
             android:layout_below="@+id/gameNameRecycler"
             android:layout_toEndOf="@+id/game_total_txt"
             android:layout_toRightOf="@+id/game_total_txt"
-            android:textSize="@dimen/_16sdp"
+            android:text="0"
             android:textColor="@color/colorAccent"
-            android:text="0"/>
+            android:textSize="@dimen/_15sdp" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

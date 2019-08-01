@@ -15,6 +15,6 @@
         <item name="stColorBackground">#20a51d</item>
         <item name="stTextColor">#FFFFFF</item>
         <item name="stLength">LONG</item>
-        <item name="stGravity">top</item>
+        <item name="stGravity">center</item>
     </style>
 </resources>
