@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         mMainList = new ArrayList<>();
 
         mMainList.add(new MainActivityItem("NEW GAME"));
-        mMainList.add(new MainActivityItem("RESUME"));
+        mMainList.add(new MainActivityItem("PLAYED GAMES"));
         mMainList.add(new MainActivityItem("COURSES"));
         mMainList.add(new MainActivityItem("PLAYERS"));
 

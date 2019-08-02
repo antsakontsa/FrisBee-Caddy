@@ -26,7 +26,7 @@ public class NewGameCourseAdapter extends RecyclerView.Adapter<NewGameCourseAdap
 
     private int checkedItems = 0;
 
-    private int selectedPosition = -1; /** No selection by default **/
+    private int selectedPosition = -1;
 
     public static class NewGameCourseViewHolder extends RecyclerView.ViewHolder {
         public RadioButton mRadioButton;

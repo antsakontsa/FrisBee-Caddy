@@ -20,9 +20,9 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="@dimen/_4sdp"
             android:layout_marginLeft="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_4sdp"
             android:layout_marginEnd="@dimen/_4sdp"
             android:layout_marginRight="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_4sdp"
             android:text="Antti"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_19sdp" />

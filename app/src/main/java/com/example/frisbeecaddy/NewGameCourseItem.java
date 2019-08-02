@@ -9,7 +9,7 @@ public class NewGameCourseItem implements Serializable {
     private ArrayList<String> mParNumbersIndividually;
     private String mCourseName, mHolesTxt, mHolesNm, mParTxt, mParNm;
 
-    public NewGameCourseItem(ArrayList<String> parNumbersIndividually,boolean radioButton, String courseName, String holesTxt, String holesNm, String parTxt, String parNm) {
+    public NewGameCourseItem(ArrayList<String> parNumbersIndividually, boolean radioButton, String courseName, String holesTxt, String holesNm, String parTxt, String parNm) {
         mParNumbersIndividually = parNumbersIndividually;
         mRadioButton = radioButton;
         mCourseName = courseName;

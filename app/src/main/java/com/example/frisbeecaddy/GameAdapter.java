@@ -19,6 +19,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
     public interface OnItemClickListener {
         void onMinusClick(int position);
+
         void onPlusClick(int position);
     }
 

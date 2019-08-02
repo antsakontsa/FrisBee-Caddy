@@ -39,7 +39,7 @@ public class ActivityNewGame2 extends AppCompatActivity {
             mCourseList = new ArrayList<>();
 
             for (int i = 0; i < ActivityCourses.mCourseList.size(); i++) {
-                mCourseList.add(new NewGameCourseItem(ActivityCourses.mCourseList.get(i).getParNumbersIndividually(),false, ActivityCourses.mCourseList.get(i).getCourseName(), "Holes:", ActivityCourses.mCourseList.get(i).getHolesNm(), "Par:", ActivityCourses.mCourseList.get(i).getParNm()));
+                mCourseList.add(new NewGameCourseItem(ActivityCourses.mCourseList.get(i).getParNumbersIndividually(), false, ActivityCourses.mCourseList.get(i).getCourseName(), "Holes:", ActivityCourses.mCourseList.get(i).getHolesNm(), "Par:", ActivityCourses.mCourseList.get(i).getParNm()));
             }
         }
     }

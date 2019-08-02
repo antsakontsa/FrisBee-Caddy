@@ -10,7 +10,7 @@
     <style name="AlertDialogCustom">
         <item name="colorPrimary">@color/colorPrimary</item>
     </style>
-    
+
     <style name="saveToast">
         <item name="stColorBackground">#20a51d</item>
         <item name="stTextColor">#FFFFFF</item>
