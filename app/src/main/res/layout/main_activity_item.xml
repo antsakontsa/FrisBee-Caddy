@@ -24,5 +24,4 @@
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/_21sdp" />
     </RelativeLayout>
-
 </androidx.cardview.widget.CardView>

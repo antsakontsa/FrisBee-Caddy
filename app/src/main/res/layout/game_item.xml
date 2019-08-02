@@ -20,17 +20,19 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="@dimen/_4sdp"
             android:layout_marginLeft="@dimen/_4sdp"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:layout_marginEnd="@dimen/_4sdp"
-            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_toStartOf="@+id/gameParNumberRecycler"
+            android:layout_toLeftOf="@+id/gameParNumberRecycler"
             android:text="Antti"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_19sdp" />
 
         <TextView
             android:id="@+id/gameParNumberRecycler"
-            android:layout_width="@dimen/_39sdp"
-            android:layout_height="@dimen/_39sdp"
+            android:layout_width="@dimen/_38sdp"
+            android:layout_height="@dimen/_38sdp"
             android:layout_alignParentTop="true"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -38,11 +40,11 @@
             android:layout_toStartOf="@+id/game_minus_btn"
             android:layout_toLeftOf="@+id/game_minus_btn"
             android:background="@drawable/border_box"
-            android:padding="@dimen/_4sdp"
+            android:padding="@dimen/_5sdp"
             android:text="3"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_21sdp" />
+            android:textSize="@dimen/_20sdp" />
 
         <ImageView
             android:id="@+id/game_minus_btn"
@@ -93,5 +95,4 @@
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/_15sdp" />
     </RelativeLayout>
-
 </androidx.cardview.widget.CardView>

@@ -40,5 +40,4 @@
             android:layout_marginBottom="@dimen/_4sdp"
             android:background="@drawable/ic_delete" />
     </RelativeLayout>
-
 </androidx.cardview.widget.CardView>

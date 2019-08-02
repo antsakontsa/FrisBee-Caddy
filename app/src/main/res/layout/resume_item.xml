@@ -63,6 +63,5 @@
             android:text="08.02.2019"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/_18sdp" />
-
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

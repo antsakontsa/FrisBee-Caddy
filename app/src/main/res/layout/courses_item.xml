@@ -98,5 +98,4 @@
             android:layout_marginRight="0dp"
             android:background="@drawable/ic_delete" />
     </RelativeLayout>
-
 </androidx.cardview.widget.CardView>
