@@ -89,6 +89,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         holder.mTextPlayer.setText(currentItem.getText1());
         holder.mTextPar.setText(currentItem.getText2());
 
+        /** Set background for item numbers **/
         if (Integer.parseInt(holder.mTextPar.getText().toString()) == 1) {
             holder.mTextPar.setBackgroundResource(R.drawable.border_box_yellow);
         } else if (Integer.parseInt(holder.mTextPar.getText().toString()) < Integer.parseInt(ActivityGame.mParNm.getText().toString())) {
